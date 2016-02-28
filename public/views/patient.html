@@ -1,0 +1,175 @@
+
+<div > 
+<div id="wrapper">
+	<div id="featured-wrapper">
+		<div id="featured" class="extra2  container" >
+			<div class="main-title" >
+			<!--div style="text-align:left;">
+			<div style="text-align:right; width:auto;">
+			<a href="#" class="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">+</a>	
+			</div>
+			</div-->		
+			</div>	
+			<div class="ebox1"> <!--span class="fa fa-pagelines"></span-->
+			<a href="#/patient" style="color:#8dc63f; font-size:22px; font-weigth:500;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">+</a>
+				<div class="title"  style="overflow-y: scroll; height:500px;">					
+					<table class="table table-striped">
+						
+						<thead>							
+						<tr>
+								<th style="text-align:left;">Nom</th>
+								<th style="text-align:left;">Prenom</th>
+								<th style="text-align:right;">	</th>								
+								<!--th style="text-align:left;">Status</th-->
+							</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)" class="tablepointer" >
+								<td style="text-align:left;  color:#23527c;">{{getpatient.name}}</td>
+								<td style="text-align:left; color:#23527c;">{{getpatient.lastname}}</td>
+								<td style="text-align:left;"></td>
+								<!--td style="text-align:left;">{{getpatient.Status}}</td-->
+							</tr>						
+						</tbody>
+					</table>
+				</div>	
+			</div>
+			<div class="ebox2"> 
+				<!--span class="fa fa-anchor"></span-->
+				<div class="title ">	
+				<p style="text-align:center; padding:5px; color:#23527c; font-size:22px; font-weigth:500;">Fiche du patient</p>
+					<table class="table " style="font-size:15px;">
+						<thead>
+						</thead>
+						<tbody >
+							<tr>
+								<td style="text-align:right; color:#23527c; width:250px;">Nom / prenom :</td>
+								<td style="text-align:left; color:#23527c; font-weight:500;"><b>{{name}} {{lastname}}</b></td>
+							</tr>
+							<tr >
+								<td style="text-align:right;  color:#23527c;">Adresse 1:</td>
+								<td style="text-align:left; color:#23527c;"><b>{{adresse}}</b></td>
+							</tr>
+							<tr >
+								<td style="text-align:right;  color:#23527c;">Adresse 2 :</td>
+								<td style="text-align:left; color:#23527c;"><b>-</b></td>
+							</tr>
+							<tr>
+								<td style="text-align:right;  color:#23527c;">Date naiss. :</td>
+								<td style="text-align:left; color:#23527c;">{{birth_date}}</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;  color:#23527c;">Numero SIS :</td>
+								<td style="text-align:left; color:#23527c;">{{SIS}}</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;  color:#23527c;">Mutuelle :</td>
+								<td style="text-align:left; color:#23527c;">{{mutuelle}}</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;  color:#23527c;">Profession :</td>
+								<td style="text-align:left; color:#23527c;">{{profession}}</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;  color:#23527c;">Status patient :</td>
+								<td style="text-align:left; color:#23527c;">{{status}}</td>
+							</tr>
+							<tr>
+							<td style="text-align:right;  color:#23527c;">Medecin traitant : </td> 
+							<td style="text-align:left; color:#23527c;">{{doctor}}</td> 
+							</tr>
+							<tr>
+							<td style="text-align:right;  color:#23527c;">Tél : </td> 
+							<td style="text-align:left; color:#23527c;">{{telephone}}</td> 
+							</tr>
+							<tr>
+							<td style="text-align:right;">
+							<a href="#" class="historique" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Historique </a>	
+							</td> 
+							<td style="text-align:left;">
+							<a href="#" class="modify" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Modifier</a>		
+							</td> 
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		<!-- Modal popup -->
+<div class="modal fade" id="exampleModal" tabindex="-1"    role="dialog" aria-labelledby="exampleModalLabel" >
+  <div class="modal-dialog"  role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"  style="color:#fff;">&times;</span></button>
+        <div style="color:#fff; text-align:center;" >
+        <span  >Nouveau Patient</span>
+        </div>
+      </div> 
+      <form  name="myForm" class="my-form">
+      <div class="modal-body" > 
+      	<div class="form-group">  
+	          <div class="radio">
+			      <label><input type="radio">M</label>
+			      <label><input type="radio">Mme</label>
+			      <label><input type="radio">Mlle</label>
+			      <label><input type="radio">Enf</label>
+		</div>
+		 </div>     
+          <div class="form-group">    
+          <div>       
+            <input type="text" ng-model="name" class="inputPatient"  id="recipient-name" placeholder="Nom" required>
+            </div> 
+          </div>
+           <div class="form-group">          
+            <input type="text" ng-model="lastname"  class="inputPatient"  id="recipient-name" placeholder="Prenom" required>
+          </div>
+          <div class="form-group">          
+            <input type="text" ng-model="birthdate"  class="inputPatient"  id="recipient-name" placeholder="date de naissance" required>
+          </div>
+		  <div class="form-group">          
+            <input type="text" ng-model="street"  class="inputPatient"   name="street" id="recipient-name" placeholder="Rue" required>
+          </div>   
+
+		  <div class="form-group">          
+            <input type="text" ng-model="housenumber"  class="inputPatient"   name="number" id="recipient-name" placeholder="N°" required>
+          </div>   
+          <div class="form-group">  
+          <div >        
+            <select  class="selectPatient" id="value_Id" >
+            	<option >Code postale</option>
+			    <option ng-repeat="code in codes track by $index" bn-log-dom-creation="with" ng-model="postalcode" value="{{code.code}}">{{code.code}} {{code.city}} </option>			  
+			  </select>
+          </div>    
+            </div>     
+		  <div class="form-group">          
+            <input type="text" ng-model="SIS"  class="inputPatient"  name="SIS" id="recipient-name" placeholder="Numero Carte SIS" required>
+          </div>
+           <div class="form-group">          
+            <input type="text" ng-model="mutuelle"  class="inputPatient"  name="SIS" id="recipient-name" placeholder="Mutuelle" required>
+          </div>
+            <div class="form-group">          
+            <input type="text" ng-model="profession"  class="inputPatient"  name="profession" id="recipient-name" placeholder="profession" required>
+          </div>
+           <div class="form-group">      
+            <input type="text" ng-model="doctor"  class="inputPatient"  id="recipient-name" placeholder="medecin traitant" required>
+          </div> 
+          <div class="form-group">      
+            <input type="text" ng-model="telephone"  class="inputPatient"  id="recipient-name" placeholder="Télephone/Gsm" required>
+          </div>          
+            <div class="modal-footer" >
+
+              <button class="buttonclose"  data-dismiss="modal">Annuler</button>
+              <button  ng-click="addpatient()" class="button " >Valider</button>
+               </div>           
+       
+      </div> </form>
+       
+    </div>
+  </div>
+</div>
+
+  </div>

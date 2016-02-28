@@ -1,0 +1,1 @@
+var socket = io();socket.emit('conected', {origine: "Alain"});socket.on('responsedTonewconnected', function(data){	//$(document.body).append(data.message);	console.log(data);		});

@@ -1,0 +1,45 @@
+
+<div >
+<div class="container"  >									
+						<form class="form-horizontal" style="margin-left:35%; margin-top:10%;" ng-submit="loginForm()">
+							<div>
+									
+								<div class="form-group">
+									<div class="col-sm-6" style="padding-left:80px;">										
+									 <img src="http://flysyse.com/infidom/fonts/logoinfidome.svg" width="160px;" height="100px;">									   
+									</div>	 
+								</div>	    						
+								<div class="form-group">								
+									<div class="col-sm-6">
+										 <input ng-model="email" type="text" class="input_login" placeholder="Email" name="email" required>
+									</div>
+								</div>
+								<div class="form-group">									
+									<div class="col-sm-6">
+										 <input ng-model="password" type="password"  class="input_login" placeholder="Mot de passe" name="password" required>					
+									</div>
+								</div>					
+								<div class="form-group">
+									<div class="col-sm-6">						
+											 <button ng-click="loginForm()"  class="loginButton">
+								                <span ng-show="!loginForm.loading">Identification</span>
+								                <!--span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+								                <span ng-show="loginForm.loading">Signing up...</span-->
+								              </button>										
+									</div>	
+																
+								</div>
+								<div class="form-group">									
+									<div class="col-sm-6">
+										<a href="" style="font-weigth:200; color=#fff;" > mot de pass oublier ?<a/>				
+									</div>
+								</div>		
+								<div class="form-group">	
+									<div class="col-sm-6">	
+										<span>{{error}} </sapn>						
+									</div>
+								</div>	
+							</div>
+						</form>			
+				</div>
+		</div>
