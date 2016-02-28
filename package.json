@@ -5,7 +5,7 @@
   "main": "app.js",
   "author": "alain Muya",
   "license":"NLPL",
-  "repository" :"gti not created yet",
+  "repository" :"https://github.com/alainfly/nursecare.git",
   "dependencies": {
     "express": "^4.12.4",
     "socket.io": "^1.3.5",
