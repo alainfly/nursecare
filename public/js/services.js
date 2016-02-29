@@ -1,4 +1,4 @@
- app = angular.module("services",[]); 
+app = angular.module('services',[]); 
  //check if session existe
 
 app.service('check_session', function($http,$q){	
@@ -7,13 +7,13 @@ app.service('check_session', function($http,$q){
 					});	
 			function Get_checked_session(){
 			var session = sessionStorage.getItem("I_cter");
-			if (!session){	window.location = '/';}											
+			if (!session){	window.location = '#/login';}											
 			return	
 			}						
 		})
 app.service('crud_api',function($http,$q){
 
-			constant(url,'http://127.0.0.1/infidomeapi/api/api.php');
+			//constant(url,'http://127.0.0.1/infidomeapi/api/api.php');
 			
 			return ({
 			        postdata : postdata,
@@ -23,7 +23,7 @@ app.service('crud_api',function($http,$q){
 					});
 					function postdata(obj){
 						var request = $http({
-						url:"http://127.0.0.1/infidomeapi/api/api.php",			
+						url:"http://localhost:8888/api/api.php",			
 						method: 'POST',
 						data:obj,
 						cache:false
@@ -32,7 +32,7 @@ app.service('crud_api',function($http,$q){
 					}					
 					function finddata(codeObj){
 						var request = $http({
-						url:"http://127.0.0.1/infidomeapi/api/api.php",
+						url:"http://localhost:8888/api/api.php",
 						method: 'GET',
 						params : codeObj,
 						cache : false
@@ -52,7 +52,7 @@ app.service('crud_api',function($http,$q){
 						return res.data;
 					}
 					function errorCB(res){
-						console.log("can't reach API's");
+						console.log(res);
 						return res.data;
 					}
 			})
