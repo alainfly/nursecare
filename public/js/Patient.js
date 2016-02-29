@@ -1,6 +1,7 @@
 
-app = angular.module('mainApp',['services','config']);
-app.controller('showPatientController', [ '$scope', 
+app = angular.module("patientModule",['services']);
+
+app.controller('PatientController', [ '$scope', 
 										  '$http',
 										  'check_session',
 										  'crud_api', 
@@ -16,7 +17,7 @@ app.controller('showPatientController', [ '$scope',
 										$scope.mutuelle ="-";
 										$scope.telephone="-";
 					//redirect to loggin form if session not exist
-	       			//check_session.Get_checked_session();	
+	       			check_session.Get_checked_session();	
 	       			//list all Patient	       			
 							var data = {
 										id_Patient:sessionStorage.getItem("I_cter"),
@@ -30,12 +31,7 @@ app.controller('showPatientController', [ '$scope',
 							var getit = sessionStorage.getItem("email");
 							console.log(getit+"cool");
 							*/
-							$scope.toLogin= function(){
-									//console.log("sa madcececec");
-									sessionStorage.removeItem('email');
-									window.location = '/loginPage';
-							}	
-							
+													
 
 							$scope.patientfiche = function(idpatient){
 								var getidpatient = {
@@ -43,7 +39,8 @@ app.controller('showPatientController', [ '$scope',
 										fichepatient:true
 										}
 								//console.log(getidpatient);
-							crud_api.postdata(getidpatient).then(function(res){								
+							crud_api.finddata(getidpatient).then(function(res){
+							  console.log(res);								
 										angular.forEach(res,function(value,key){										
 										$scope.name=value.name;										
 										$scope.lastname=value.lastname;
@@ -59,6 +56,8 @@ app.controller('showPatientController', [ '$scope',
 								});
 							}					
 				}]);
+
+/*
 
 app.controller('addpatientController', [ '$scope', 
 										 '$q',
@@ -95,5 +94,5 @@ app.controller('addpatientController', [ '$scope',
 				console.log($scope.postalcode);
 				crud_api.postdata(codeObj).then(function(res){console.log(res);} );		
 		}
-}]);
+}]);*/
 
