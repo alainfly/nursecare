@@ -6,16 +6,16 @@ app.controller('PatientController', [ '$scope',
 										  'check_session',
 										  'crud_api', 
 										  function($scope,$http,check_session,crud_api){	
-										$scope.name="-";										
-										$scope.lastname="-";
-										$scope.SIS="-";
-										$scope.status="-";
-										$scope.adresse="-";
-										$scope.birth_date="-";
-										$scope.doctor = "-";
-										$scope.profession = "-";
-										$scope.mutuelle ="-";
-										$scope.telephone="-";
+										$scope.name="";										
+										$scope.lastname="";
+										$scope.SIS="";
+										$scope.status="";
+										$scope.adresse="";
+										$scope.birth_date="";
+										$scope.doctor = "";
+										$scope.profession = "";
+										$scope.mutuelle ="";
+										$scope.telephone="";
 					//redirect to loggin form if session not exist
 	       			check_session.Get_checked_session();	
 	       			//list all Patient	       			
@@ -24,8 +24,9 @@ app.controller('PatientController', [ '$scope',
 										listpatient:true 
 									} 
 							crud_api.finddata(data).then(function(result){
+
 							$scope.patient = result; 
-							console.log(result);
+							console.log(result.length);
 							});
 							/*
 							var getit = sessionStorage.getItem("email");

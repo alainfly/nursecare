@@ -52,7 +52,7 @@ app.service('crud_api',function($http,$q){
 						return res.data;
 					}
 					function errorCB(res){
-						console.log(res);
+						console.log('Back-end API@php Or DB server not reachable');
 						return res.data;
 					}
 			})

@@ -433,7 +433,7 @@ ul.contact li a.icon-rss:before
 	padding: 1em;
 	border-radius: 0.25em;
 	border: 0px;
-	width: 100px;
+	width: 110px;
 	}
 .loginButton{			
 	
@@ -828,7 +828,7 @@ ul.contact li a.icon-rss:before
 	overflow: hidden;
 	padding: 1em 0em;
 	background: #FFF;
-	text-align: center;
+	text-align: leftebox1;
 }
 
 #featured
@@ -851,18 +851,6 @@ ul.contact li a.icon-rss:before
 	font-size: 2em;
 }
 
-#featured-wrapper .fa
-{
-	display: inline-block;
-	margin-bottom: 1em;
-	width: 3em;
-	height: 3em;
-	line-height: 3em;
-	font-size: 4em;
-	color: #8dc63f;
-	border: 1px solid #86bd3b;
-	border-radius: 50%;
-}
 
 .column1,  .column2,  .column3,  .column4
 {
