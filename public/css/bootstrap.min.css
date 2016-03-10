@@ -4901,7 +4901,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #ddd
+    border-bottom: none;
 }
 
 .nav-tabs>li {

@@ -3,36 +3,69 @@ app = angular.module('loginModule',['services']);
 app.controller('loginControler', [ '$scope', 
 								   '$http', 
 								   'crud_api',
-								   function($scope,$http, crud_api){
+								   'SessionHandling',
+								   '$q',
+								   function($scope,$http, crud_api, SessionHandling,$q){
 
 	$scope.test="premier test angular";			
 	//$scope.hideBarMenu =true;	
 	//loginForm.loading= false;	  	
-	$scope.loginForm = function(){
-		
+	$scope.loginForm = function(){	
+	var socket = io();	
 		var data = {
 					email: $scope.email,
 					password: $scope.password,
 					login:true 
 				} 
+				/*
+					socket.emit('Pass', {Passwords:$scope.password});
+					socket.on('cryptedPassword',function(data){ 
+					console.log(data.resp);		
+					});
+				*/
 				crud_api.finddata(data).then(function(result){
-
-				//console.log(result);
+				
 				angular.forEach(result,function(value,key){	
 					//console.log(value.password);
 					 $scope.encrypPassword = value.password;
 					 $scope.userID = value.id;
 					 $scope.email = value.email;
+					// console.log(value.password);
 			 	});
 
-				var socket = io();
+				
 				socket.emit('encrypPassword', {encryptedPassword:$scope.encrypPassword, password:$scope.password});
 				socket.on('decryptedPassword', function(data){
 				//$(document.body).append(data.message);
 				if (data.result){
-					sessionStorage.setItem("I_cter", $scope.userID);
-					sessionStorage.setItem("I_ct", $scope.email);
+
+					//here i'm goin to create new instruction in session service to send datas to sessionHandler in php API's
+					//console.log(data.result);
+					var sessobj = {
+						storeSession:true,
+						userCryptedId: $scope.userID						
+					}
+
+					SessionHandling.Handler(sessobj).then(function(res){
+					console.log(res);
+					localStorage.setItem("I_cter",res);
+					localStorage.setItem("I_ct", $scope.email);
 					window.location='/';
+					
+					});
+
+					/*
+					SessionHandling.sessionHandle(sessionObjej).then(function(response){
+						console.log(res);
+					},function(response){
+						console.log(response);
+					});
+
+					*/
+
+					
+
+
 				} else if (!data.result){
 					console.log('not ok');
 					}

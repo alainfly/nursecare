@@ -3,9 +3,9 @@ app = angular.module("patientModule",['services']);
 
 app.controller('PatientController', [ '$scope', 
 										  '$http',
-										  'check_session',
+										  'SessionHandling',
 										  'crud_api', 
-										  function($scope,$http,check_session,crud_api){	
+										  function($scope,$http, SessionHandling, crud_api){	
 										$scope.name="";										
 										$scope.lastname="";
 										$scope.SIS="";
@@ -16,24 +16,31 @@ app.controller('PatientController', [ '$scope',
 										$scope.profession = "";
 										$scope.mutuelle ="";
 										$scope.telephone="";
-					//redirect to loggin form if session not exist
-	       			check_session.Get_checked_session();	
-	       			//list all Patient	       			
+							//redirect to loggin form if session not exist
+		       				SessionHandling.Get_checked_session().then(function(result){
+		       				angular.forEach(result,function(value,key){	
+							console.log(value);
+							$scope.id_Patient = value.session_data;
+													
+							//list all Patient	       			
 							var data = {
-										id_Patient:sessionStorage.getItem("I_cter"),
+										idPatient:value.session_data,
 										listpatient:true 
 									} 
-							crud_api.finddata(data).then(function(result){
+							crud_api.finddata(data).then(function(resultData){
 
-							$scope.patient = result; 
-							console.log(result.length);
+							if (!resultData){
+								window.location ="#/";
+							}
+							
+
+							$scope.patient = resultData; 
+							console.log(resultData);
 							});
-							/*
-							var getit = sessionStorage.getItem("email");
-							console.log(getit+"cool");
-							*/
-													
+							
+			 			});	
 
+       					});											
 							$scope.patientfiche = function(idpatient){
 								var getidpatient = {
 										id: idpatient,	
@@ -41,7 +48,7 @@ app.controller('PatientController', [ '$scope',
 										}
 								//console.log(getidpatient);
 							crud_api.finddata(getidpatient).then(function(res){
-							  console.log(res);								
+							console.log(res);								
 										angular.forEach(res,function(value,key){										
 										$scope.name=value.name;										
 										$scope.lastname=value.lastname;
