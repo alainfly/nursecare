@@ -5,21 +5,8 @@
 			<div class="main-title">				
 			</div>	
 			<div class="ebox1"> 
-				<form class="form-horizontal" style="margin-left:35%; margin-top:10%;" ng-submit="logout()">
-							<div>				
-								<div class="form-group">
-									<div class="col-sm-6">						
-											 <!--button ng-submit="logout()"  class="loginButton">
-								                <span ng-show="!loginForm.loading"><i class="fa fa-sign-out fa-fw fa-x2"></i>loggout</span>
-								                <!--span ng-show="loginForm.loading" class="fa fa-spinner"></span>
-								                <span ng-show="loginForm.loading">Signing up...</span>
-								              </button-->										
-									</div>	
-																
-								</div>
-								
-							</div>
-						</form>			
+				<div class="title">	
+				<h2>{{auth.profile.nickname}}</h2> <img src="{{auth.profile.picture}}"/>
 			</div>
 			<div class="ebox2"> 
 				<!--span class="fa fa-anchor"></span-->

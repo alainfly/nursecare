@@ -2,33 +2,18 @@
 
 
     // create the controller and inject Angular's $scope
-    app.controller('main', [ '$scope', 
+    app.controller('main', [ 		'$scope', 
 								   '$http', 
 								   'crud_api',
 								   'SessionHandling',
 								   '$q',
-								   function($scope,$http, crud_api, SessionHandling,$q){
+								   'auth',
+								   function($scope,$http, crud_api, SessionHandling,$q, auth){
         // create a message to display in our view
        // $scope.message = 'Everyone come and see how good I look!';
 
-       var socket = io();
-
-       socket.on('clientlost',function(instruct){
-
-       	console.log("disconnected");
-/*
-       				$scope.ses=sessionStorage.getItem("I_cter");
-    				var sessobj = {
-						destroySession:true,
-						userCryptedId: $scope.ses 						
-					}
-
-					SessionHandling.Handler(sessobj).then(function(res){
-					console.log(res);
-					//localStorage.clear();
-					//window.location ='#/login';						
-					});*/
-       })
+       $scope.auth = auth;	
+       //console.log(auth.profil);
 
  
         

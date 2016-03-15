@@ -5,9 +5,14 @@ app.controller('logout', [ '$scope',
 								   'crud_api',
 								   'SessionHandling',
 								   '$q',
-								   function($scope,$http, crud_api, SessionHandling,$q){
+								   'auth',
+								   'store',
+								   function($scope,$http, crud_api, SessionHandling,$q,auth, store){
 
           	$scope.logout = function(){
+					auth.signout();
+					store.remove('profile');
+					store.remove('token');
 
        				$scope.ses=localStorage.getItem("I_cter");
     				var sessobj = {

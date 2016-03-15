@@ -5,11 +5,28 @@ app.controller('loginControler', [ '$scope',
 								   'crud_api',
 								   'SessionHandling',
 								   '$q',
-								   function($scope,$http, crud_api, SessionHandling,$q){
+								   'auth',
+								   'store', 
+								   '$location',
+								   function($scope,$http, crud_api, SessionHandling,$q,auth, store, $location){
 
-	$scope.test="premier test angular";			
-	//$scope.hideBarMenu =true;	
-	//loginForm.loading= false;	  	
+	// LoginCtrl.js
+	
+	  $scope.signin = function() {
+	    auth.signin({}, function (profile, token) {
+		      // Success callback
+
+		      console.log(profile);
+		      store.set('profile', profile);
+		      store.set('token', token);
+		      $location.path('/');
+	    }, function(err) {
+		      console.log("Error :(", err);
+		      	//$location.path('/');
+		    });
+		  }
+
+	
 	$scope.loginForm = function(){	
 	var socket = io();	
 		var data = {
