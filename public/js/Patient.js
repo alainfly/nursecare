@@ -17,6 +17,7 @@ app.controller('PatientController', [ '$scope',
 										$scope.mutuelle ="";
 										$scope.telephone="";
 							//redirect to loggin form if session not exist
+
 		       				SessionHandling.Get_checked_session().then(function(result){
 		       				angular.forEach(result,function(value,key){	
 							console.log(value);
@@ -28,7 +29,7 @@ app.controller('PatientController', [ '$scope',
 										listpatient:true 
 									} 
 							crud_api.finddata(data).then(function(resultData){
-
+								
 							if (!resultData){
 								window.location ="#/";
 							}

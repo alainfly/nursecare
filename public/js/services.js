@@ -21,13 +21,13 @@ app.service('SessionHandling', function($http,$q){
 
 			var session = localStorage.getItem("I_cter");
 			if (!session){	
-				window.location = '#/login';
+				//window.location = '#/login';
 			}						
 			 var get = {sessionId:session};	
 			 //console.log(get);			 
 			 return Handler(get).then(function(res){			 	
 			 	if (Object.keys(res).length==0){	
-				window.location = '#/login';
+				//window.location = '#/login';
 				}
 				return res;
 			 });
@@ -50,7 +50,12 @@ app.service('crud_api',function($http,$q){
 						data:obj,
 						cache:false
 						});
-						return request.then(function(res){return res.data} ,function(res){return res.data});
+						return request.then(function(res){
+							console.log(res);
+							return res.data
+						} ,function(res){
+							return res.data
+						});
 					}					
 					function finddata(codeObj){
 						var request = $http({
@@ -60,7 +65,7 @@ app.service('crud_api',function($http,$q){
 						cache : false
 						});
 						return request.then(function(response) {
-							//console.log(response.data);
+							console.log(response.data);
 							return response.data;
 						} , errorCB);		
 					}

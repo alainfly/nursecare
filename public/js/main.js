@@ -14,7 +14,31 @@
 
        $scope.auth = auth;	
        //console.log(auth.profil);
+       			//$scope.formData = "bonjour alain sa marche ";
 
+       			$scope.sub = function() {
+       					var getidpatient = {
+										id: 'idpatient',	
+										fichepatient:true,
+										email:'alainfly3@gmail.com'
+										}
+
+       				var request = $http({
+						url:"/api/local",
+						method: 'GET',
+						params : getidpatient,
+						cache : false
+						});
+						return request.then(function(response) {
+							console.log(response.data);
+							return response.data;
+						} , function(err){
+							console.log(err);
+						});
+
+			     
+			    }	
+	
  
         
     }]);
