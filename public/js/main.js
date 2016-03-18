@@ -12,15 +12,18 @@
         // create a message to display in our view
        // $scope.message = 'Everyone come and see how good I look!';
 
-       $scope.auth = auth;	
-       //console.log(auth.profil);
-       			//$scope.formData = "bonjour alain sa marche ";
-
+       			$scope.auth = auth;	
+       			angular.forEach(auth.profile, function(value,key) {       				
+       				if(key=='email'){
+       					$scope.email = value;
+       				}        				
+       			});
+       			console.log($scope.email);
        			$scope.sub = function() {
        					var getidpatient = {
 										id: 'idpatient',	
 										fichepatient:true,
-										email:'alainfly3@gmail.com'
+										email:$scope.email
 										}
 
        				var request = $http({

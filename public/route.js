@@ -27,12 +27,10 @@ router.use(function timeLog(req, res, next) {
 // define the home page route
 router.get('/local', function(req, res) {
   //res.send('Birds home page');
-     var queryString ='SELECT * FROM nurse where nurse.email = ?';     
+     var queryString ='SELECT name, lastname, email FROM nurse where nurse.email = ?';     
     connection.query(queryString,[req.query.email], function(err, rows, fields) {
     if (err) throw err; 
-    console.log(JSON.stringify(rows));
-
-    //res.send(json_enlcode(rows); 
+    console.log(JSON.stringify(rows));  
     for (var i=0; i<rows.length; i++) {
         console.log(rows[i].name);  
         res.send({
