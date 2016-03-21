@@ -17,6 +17,7 @@ app.controller('shownurseController', [ '$scope', '$http','check_session', funct
 						    // or server returns response with an error status.
 						    console.log("cant connect to php restfull");
 						  });
+						
 						$scope.toLogin= function(){
 									//console.log("sa madcececec");
 									sessionStorage.removeItem('email');

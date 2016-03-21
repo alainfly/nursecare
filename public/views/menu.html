@@ -1,0 +1,20 @@
+   <div id="header" class="container">
+        <div id="logo" >
+        <!--h1><a href="#"><img src="http://flysyse.com/infidom/fonts/logoinfidome.svg" width="100px;" height="50px;"></a></h1-->
+        <img src="{{auth.profile.picture}}" width="80px;" height="70px;"/> &nbsp; <span style="font-size:17px; color:#dcdcdc">{{auth.profile.nickname}}</span> 
+        </div>
+
+        <div id="menu" ng-controller="logout">
+              <ul>
+            <li class="current_page_item"><a href="#/" accesskey="1" title="">Home</a></li>
+            <li><a href="#/patient" accesskey="2" title="">Patients</a></li>
+            <li><a href="#/infirmier" accesskey="3" title="">Infirmier</a></li>
+            <li><a href="#/calendar" accesskey="4" title="">Calendrier</a></li>
+            <li><a href="#/search" accesskey="5" title="">Recherche</a></li>
+            <li ><a href="#/" class="logout" ng-click="logout()" ><i class="fa fa-sign-out fa-fw fa-x2"></i></a>                
+
+            </li>
+          </ul>
+       </div>
+
+      </div>

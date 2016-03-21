@@ -4,8 +4,12 @@ app = angular.module("patientModule",['services']);
 app.controller('PatientController', [ '$scope', 
 										  '$http',
 										  'SessionHandling',
-										  'crud_api', 
-										  function($scope,$http, SessionHandling, crud_api){	
+										  'api',										  
+										  'auth',
+										  '$rootScope',
+
+										function($scope,$http, SessionHandling, api, auth, $rootScope){
+
 										$scope.name="";										
 										$scope.lastname="";
 										$scope.SIS="";
@@ -16,39 +20,38 @@ app.controller('PatientController', [ '$scope',
 										$scope.profession = "";
 										$scope.mutuelle ="";
 										$scope.telephone="";
-							//redirect to loggin form if session not exist
 
-		       				SessionHandling.Get_checked_session().then(function(result){
-		       				angular.forEach(result,function(value,key){	
-							console.log(value);
-							$scope.id_Patient = value.session_data;
-													
-							//list all Patient	       			
+
+		       				//list all Patient
+							angular.forEach(auth.profile, function(value,key) {       				
+			       				if(key=='email'){
+			       					$rootScope.email = value;
+			       				}        				
+			       			});
 							var data = {
-										idPatient:value.session_data,
-										listpatient:true 
-									} 
-							crud_api.finddata(data).then(function(resultData){
-								
-							if (!resultData){
-								window.location ="#/";
-							}
-							
+										email: $scope.email,
+										listpatient:true
 
+										}
+							api.finddata(data,'api/patient').then(function(resultData){
+							if (!resultData){
+								//window.location ="#/";
+							}
 							$scope.patient = resultData; 
 							console.log(resultData);
 							});
-							
-			 			});	
 
-       					});											
+       																
 							$scope.patientfiche = function(idpatient){
+
+								console.log(idpatient);
 								var getidpatient = {
-										id: idpatient,	
+										//email: $scope.email,
+										id:idpatient,	
 										fichepatient:true
 										}
 								//console.log(getidpatient);
-							crud_api.finddata(getidpatient).then(function(res){
+							api.finddata(getidpatient,'api/detailPatient').then(function(res){
 							console.log(res);								
 										angular.forEach(res,function(value,key){										
 										$scope.name=value.name;										
@@ -63,7 +66,12 @@ app.controller('PatientController', [ '$scope',
 										$scope.telephone=value.telephone
 										})
 								});
-							}					
+							}	
+
+
+							$scope.findpatient= function(){
+								console.log($scope.pat);
+							}				
 				}]);
 
 /*

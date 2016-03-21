@@ -3,7 +3,7 @@
 <div id="wrapper">
 	<div id="featured-wrapper">
 		<div id="featured" class="extra2  container" >
-			<div class="main-title" >
+			<!--div class="main-title" >
 
 
 			<div class="ebox1" style="border-right:none;">
@@ -11,110 +11,81 @@
 
 			</div>	
 			<div class="ebox2" >
-				<!--a href="#/patient" style="color:#8dc63f; font-size:22px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-eye fa-fw fa-x2"></i> &nbsp info</a-->
+				<!--a href="#/patient" style="color:#8dc63f; font-size:22px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-eye fa-fw fa-x2"></i> &nbsp info</a>
 			</div>
 
 		<br/>
-			</div>	
+			</div-->	
 			<div class="ebox1"> <!--span class="fa fa-pagelines"></span-->
 				
-				<div class="title"  style="overflow-y: scroll; height:500px; ">					
-					<table class="table table-striped">
+				<div class="title"  style="height:500px; ">	
+					<div >
+									
+				    <input ng-keyup="findpatient()" type="text" ng-model="pat"  class="inputPatient"  placeholder="Recheche patient">
+				    <i class="fa fa-search fa-fw fa-x2"></i> 
+				 	</div>		
+				 	<br/>		
+					<!--table class="table table-striped">
 						
 						<thead style="background-color:#8dc63f; opacity: .5; ">							
 						<tr >
 								<th style="color:#23527c; font-size:14px; ">Nom</th>
 								<th style="color:#23527c; font-size:14px; ">Prenom</th>
 								<th style="text-align:right;">	</th>								
-								<!--th style="text-align:left;">Status</th-->
+								<!--th style="text-align:left;">Status</th>
 							</tr>
 						</thead>
 						<tbody>
-						<tr ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)" class="tablepointer" >
+						<!--tr ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)" class="tablepointer" >
 								<td style="text-align:left;  color:#23527c;"><i class="fa fa-user fa-fw fa-x2"></i> &nbsp {{getpatient.name}}</td>
 								<td style="text-align:left; color:#23527c;">{{getpatient.lastname}}</td>
 								<td style="text-align:left;"></td>
-								<!--td style="text-align:left;">{{getpatient.Status}}</td-->
+								<!--td style="text-align:left;">{{getpatient.Status}}</td>
 							</tr>						
 						</tbody>
-					</table>
+					</table-->
+					
+						<div class="list-group">
+							  <span class="list-group-item active">
+							    <h4 class="list-group-item-heading"><i class="fa fa-user fa-fw fa-x2"></i>&nbsp{{patient.length}}&nbsp &nbsp liste patient &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</h4>
+							    
+							  </span>
+							   <div ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)">
+							  <span class="list-group-item">
+							    <h4 class="list-group-item-heading">{{getpatient.name}} &nbsp {{getpatient.lastname}}</h4>
+							    <p class="list-group-item-text">
+							    	<i class="fa fa-home fa-fw fa-x2">&nbsp</i>{{getpatient.street}}&nbsp &nbsp
+							     <i class="fa fa-phone fa-fw fa-x2"></i>{{getpatient.telephone}}</p>
+							  </span>
+							</div>
+							</div>
+
+
 				</div>	
 			</div>
 			<div class="ebox2"> 
 				<!--span class="fa fa-anchor"></span-->
 				<div class="title ">
-					<ul class="nav nav-tabs" style="margin-bottom:10px;">
-						  <li class="nav-item" style="width:70%; padding-top: 10px; color:#8dc63f; font-weight: 200; font-size:25px;">
-						    <span class="nav-link active"  >{{name}}&nbsp{{lastname}}</span>
-						  </li>
-						  <li class="nav-item">						   
-						 
-						  </li>
-						</ul>	
-									
-					<table class="table " style="border-top:1px solid #fff;">
-						<tbody >							
-							<tr>
-								<td style="text-align:right;  color:#23527c;"><i class="fa fa-home fa-fw fa-x2"></i>&nbsp Adresse:</td>
-								<td style="text-align:left; color:#23527c;"><b>{{adresse}}</b></td>
-							</tr>
-							
-							<tr>
-								<td style="text-align:right;  color:#23527c;"><i class="fa fa-calendar fa-fw fa-x2"></i>&nbsp Date naiss. :</td>
-								<td style="text-align:left; color:#23527c;">{{birth_date}}</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;  color:#23527c;"><i class="fa fa-female fa-fw fa-x2"></i><i class="fa fa-male fa-fw fa-x2"></i>&nbsp Sexe :</td>
-								<td style="text-align:left; color:#23527c;"></td>
-							</tr>
-							<tr>
-								<td style="text-align:right;  color:#23527c;">Numero SIS :</td>
-								<td style="text-align:left; color:#23527c;">{{SIS}}</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;  color:#23527c;">Mutuelle :</td>
-								<td style="text-align:left; color:#23527c;">{{mutuelle}}</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;  color:#23527c;">Profession :</td>
-								<td style="text-align:left; color:#23527c;">{{profession}}</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;  color:#23527c;">Status patient :</td>
-								<td style="text-align:left; color:#23527c;"><span style="padding:5px; background-color:#8dc63f; color:#fff; border-radius:10px  ">{{status}} </span></td>
-							</tr>
-							<tr>
-							<td style="text-align:right;  color:#23527c;">Medecin traitant : </td> 
-							<td style="text-align:left; color:#23527c;">{{doctor}}</td> 
-							</tr>
-							<tr>
-							<td style="text-align:right;  color:#23527c;">
-								<i class="fa fa-phone fa-fw fa-x2"></i>&nbsp Tél : </td> 
-							<td style="text-align:left; color:#23527c;">{{telephone}}</td> 
-							</tr>
-							<tr>
-							<td style="text-align:right;">
-							<a href="#" class="historique" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-								<i class="fa fa-eye fa-fw fa-x2"></i> &nbsp Historique </a>	
-							</td> 
-							<td style="text-align:left;">
-
-							<a href="#" class="modify" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-								<i class="fa fa-pencil-square fa-fw fa-x2"></i> &nbsp Modifier</a>		
-							</td> 
-							</tr>
-						</tbody>
-					</table>
-					<br/>
-					<ul class="nav nav-tabs">
-						  <li class="nav-item" style="width:70%; padding-top: 10px; color:#ccc; font-weight: 200; font-size:25px;">
-						    <span class="nav-link active">Option</span>
-						  </li>
-						  <li class="nav-item">						   
-						    <div class="nav-link ui toggle checkbox"><span><input type="checkbox" name="public" >
-					 		 <label>Publier </label></span></div>
-						  </li>
+						 <div ng-include="'views/fiche.html'" ></div>
+					  <ul class="nav nav-tabs">
+						  <li><a data-toggle="tab" href="#/patient#fiche">Fiche</a></li>
+						  <li><a data-toggle="tab" href="#/patient#menu1">Historique</a></li>
+						  <li><a data-toggle="tab" href="#/patient#plus">Plus</a></li>
 						</ul>
+
+						<div class="tab-content">
+						  <div id="fiche" class="tab-pane fade ">
+						    	sdfdfsdfsd
+						  </div>
+						  <div id="menu1" class="tab-pane fade" style="width:80%;">	
+				            	xrnxfgnwfnwdgnwdfnwdfbwd fgbd bwfd wfd wdf
+						  </div>
+						  <div id="plus" class="tab-pane fade">
+						    <h3>Menu 2</h3>
+						    <p>Some content in menu 2.</p>
+						  </div>
+						</div>
+				
 
 				</div>
 			</div>

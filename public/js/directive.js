@@ -35,6 +35,22 @@ app.directive('compareTo', function compareTo() {
                 });
             }
         );
+ app.directive('toggleClass', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                if(element.attr("class") == "glyphicon glyphicon-pencil") {
+                    element.removeClass("glyphicon glyphicon-pencil");
+                    element.addClass(attrs.toggleClass);
+                } else {
+                    element.removeClass("glyphicon glyphicon-ok");
+                    element.addClass("glyphicon glyphicon-pencil");
+                }
+            });
+        }
+    };
+});
 
 app.directive('ngUpdateHidden',function() {
    return {

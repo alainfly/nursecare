@@ -2,24 +2,28 @@ app = angular.module('loginModule',['services']);
 
 app.controller('loginControler', [ '$scope', 
 								   '$http', 
-								   'crud_api',
+								   'api',
 								   'SessionHandling',
 								   '$q',
 								   'auth',
 								   'store', 
 								   '$location',
-								   function($scope,$http, crud_api, SessionHandling,$q,auth, store, $location){
+								   function($scope,$http, api, SessionHandling,$q,auth, store, $location){
 
 	// LoginCtrl.js
-	
+	$('#menubar').hide();
 	  $scope.signin = function() {
 	    auth.signin({}, function (profile, token) {
-		      // Success callback
+		      
 
+		      // Success callback
 		      console.log(profile);
 		      store.set('profile', profile);
 		      store.set('token', token);
+		      localStorage.setItem('b_rtc','$$tr$_sdc8787ergrvdf8787fv');
+		     // $scope.hidemenu = true;
 		      $location.path('/');
+		       //window.location.reload();
 	    }, function(err) {
 		      console.log("Error :(", err);
 		      	//$location.path('/');
@@ -29,26 +33,21 @@ app.controller('loginControler', [ '$scope',
 	
 	$scope.loginForm = function(){	
 	var socket = io();	
+		var Url = 'api/login';
 		var data = {
 					email: $scope.email,
 					password: $scope.password,
 					login:true 
 				} 
-				/*
-					socket.emit('Pass', {Passwords:$scope.password});
-					socket.on('cryptedPassword',function(data){ 
-					console.log(data.resp);		
-					});
-				*/
-				crud_api.finddata(data).then(function(result){
-				
-				angular.forEach(result,function(value,key){	
-					//console.log(value.password);
+
+				api.finddata(data).then(function(result){
+
+					 angular.forEach(result,function(value,key){	
+					 //console.log(value.password);
 					 $scope.encrypPassword = value.password;
 					 $scope.userID = value.id;
 					 $scope.email = value.email;
-					// console.log(value.password);
-			 	});
+				});
 
 				
 				socket.emit('encrypPassword', {encryptedPassword:$scope.encrypPassword, password:$scope.password});

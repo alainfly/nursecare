@@ -1,14 +1,15 @@
-	$(document).ready(function() {	
+app = angular.module('calendarModule',[]);
+
 //		if (window.location.protocol != "https:")
   //  		window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
-
-		console.log("rien ne marche");
+app.controller('calendarController',[ '$scope', function($scope){
+		//console.log("rien ne marche");
 		$('#calendar').fullCalendar({			
 			header: {
-		        left: '',
-		        center: 'prev title next',
-		        right: ''
-		    },
+				left: 'today prev,next',
+				center: 'title',
+				right: 'timelineDay,timelineThreeDays,agendaWeek,month'
+			},
 			defaultDate: '2016-01-12 00:00:00',
 		  	height: 500,		  	
 			selectable: true,
@@ -51,24 +52,8 @@
 				url: 'http://google.com/',
 				start: '2016-01-28'
 			}
-		],
-							    	
-			select: function(start, end, event) {
-										//var title = "Please enter your namearry Potter";		
-										var start = $.fullCalendar.moment(start).format();
-										var end   = $.fullCalendar.moment(end).format();
-												  console.log(start+'---'+end);
-												   console.log(event.start);											
-												},
-			eventClick: function(event) {
-											//supersonic.logger.log(event);
-											 console.log(event.title);
-					 	 				},			
-			
-
-			 // allow "more" link when too many events			
-			
+		]
 			
 		});
-		
-	});
+	}]);
+	

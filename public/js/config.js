@@ -17,8 +17,14 @@ app = angular.module('config',['ngRoute','auth0', 'angular-storage', 'angular-jw
             .when('/login', {
                 templateUrl : 'views/loginPage.html',
                 controller  : 'loginControler'
-            });
-           
+            })
+            .when('/calendar', {
+                templateUrl : 'views/calendar.html',
+                controller  : 'calendarController'
+            })
+            .otherwise({
+                redirectTo: '/'
+              })           
     }]);
 
     app.config(function (authProvider, $routeProvider, $httpProvider, jwtInterceptorProvider) {
@@ -44,20 +50,35 @@ app = angular.module('config',['ngRoute','auth0', 'angular-storage', 'angular-jw
       // This hooks al auth events to check everything as soon as the app starts
       auth.hookEvents();
     });
-
+/*
+    app.run(function($rootScope, $templateCache) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined'){
+            $templateCache.remove(current.templateUrl);
+        }
+    });
+});*/
+  
     app.run(function($rootScope, auth, store, jwtHelper, $location) {
       // This events gets triggered on refresh or URL change
       $rootScope.$on('$locationChangeStart', function() {
         var token = store.get('token');
         if (token) {
+          console.log($location.path());
+          //$rootScope.hidemenu = false;
+         // window.location.reload();
+         // $('#header-wrapper').show();
+
           if (!jwtHelper.isTokenExpired(token)) {
             if (!auth.isAuthenticated) {
               auth.authenticate(store.get('profile'), token);
             }
           } else {
             // Either show the login page or use the refresh token to get a new idToken
+            //$rootScope.hidemenu = true;
             $location.path('/login');
           }
          }
        })
       });
+

@@ -2,18 +2,22 @@ app = angular.module("logout", ['services']);
 
 app.controller('logout', [ '$scope', 
 								   '$http', 
-								   'crud_api',
+								   'api',
 								   'SessionHandling',
 								   '$q',
 								   'auth',
 								   'store',
-								   function($scope,$http, crud_api, SessionHandling,$q,auth, store){
+								   '$templateCache',
+								   '$location',
+								   function($scope,$http, api, SessionHandling,$q,auth, store,$templateCache,$location,$window){
+								   //	$scope.showMenuebared = $location.path() === '/login';
 
           	$scope.logout = function(){
 					auth.signout();
 					store.remove('profile');
 					store.remove('token');
-
+					localStorage.clear("b_rtc");
+					
        				$scope.ses=localStorage.getItem("I_cter");
     				var sessobj = {
 						destroySession:true,
@@ -22,8 +26,12 @@ app.controller('logout', [ '$scope',
 
 					SessionHandling.Handler(sessobj).then(function(res){
 					console.log(res);
-					 localStorage.clear();
-					window.location ='#/login';						
+					localStorage.clear();
+					//var url = "http://" + window.location.host + "/";
+				        console.log(window.location);
+				        //.href = url;
+					window.location.href = "http://localhost:3000/#/login";
+					//window.location.reload();						
 					});
 
 

@@ -1,6 +1,6 @@
 app = angular.module('services',[]); 
  //check if session existe
-
+ 
 app.service('SessionHandling', function($http,$q){	
 			return ({
 						Get_checked_session : Get_checked_session,	
@@ -35,7 +35,7 @@ app.service('SessionHandling', function($http,$q){
 		})
 
 
-app.service('crud_api',function($http,$q){		
+app.service('api',function($http,$q){		
 			
 			return ({
 			        postdata : postdata,
@@ -43,7 +43,7 @@ app.service('crud_api',function($http,$q){
 			        updatedata : updatedata,
 			        finddata : finddata
 					});
-					function postdata(obj){
+					function postdata(obj,Url){
 						var request = $http({
 						url:"http://127.0.0.1:8888/api/api.php",			
 						method: 'POST',
@@ -57,9 +57,9 @@ app.service('crud_api',function($http,$q){
 							return res.data
 						});
 					}					
-					function finddata(codeObj){
+					function finddata(codeObj,URL){
 						var request = $http({
-						url:"http://localhost:8888/api/api.php",
+						url:URL,
 						method: 'GET',
 						params : codeObj,
 						cache : false

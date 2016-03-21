@@ -400,9 +400,9 @@ ul.contact li a.icon-rss:before
 	border: 0px;
 	}
 
-.historique{			
+.delete{			
 	
-	background: #708090;
+	background: #DC143C;
 	display: inline-block;
 	-moz-transition: opacity 0.25s ease-in-out;
 	-webkit-transition: opacity 0.25s ease-in-out;
