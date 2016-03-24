@@ -18,12 +18,12 @@
 				// $scope.showMenuebared = $location.path() === '/';				
 
 				var session = localStorage.getItem("b_rtc");
+				console.log(session);
 				if (!session){	
 					//window.location = '#/login';
 					//$scope.hidemenu = true;
-					$('#menubar').hide();
-									
-									}
+					$('#menubar').hide();									
+							}
 					
 				if (session){	
 					//window.location = '#/login';

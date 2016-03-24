@@ -34,6 +34,11 @@ app.service('SessionHandling', function($http,$q){
 			}						
 		})
 
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
 
 app.service('api',function($http,$q){		
 			

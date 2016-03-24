@@ -1,19 +1,43 @@
+   <nav class="navbar navbar-inverse">
+  <div class="container" style="background-color:#333300;">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Nursecare</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#/" accesskey="1" title="">Accueil</a></li>
+ </ul>
+    <div style="float:right;" ng-controller="logout">
+      <ul class="nav navbar-nav" >
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle" style="color:#ff751a;" data-toggle="dropdown" ><i class="fa fa-user fa-fw fa-x2"></i>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"></a></li>
+          <li><a href="#">Mon Compte</a></li>
+          <li><a href="#/"  ng-click="logout()" ></i>Déconnection</a> </li> 
+        </ul>
+      </li>
+    </ul>
+</div>
+  </div>
+</nav>
    <div id="header" class="container">
         <div id="logo" >
         <!--h1><a href="#"><img src="http://flysyse.com/infidom/fonts/logoinfidome.svg" width="100px;" height="50px;"></a></h1-->
-        <img src="{{auth.profile.picture}}" width="80px;" height="70px;"/> &nbsp; <span style="font-size:17px; color:#dcdcdc">{{auth.profile.nickname}}</span> 
+        <img src="{{auth.profile.picture}}" width="80px;" class="img-circle" height="70px;"/> &nbsp; <span style="font-size:17px; color:#dcdcdc">{{auth.profile.nickname}}</span> 
         </div>
 
         <div id="menu" ng-controller="logout">
               <ul>
-            <li class="current_page_item"><a href="#/" accesskey="1" title="">Home</a></li>
+           
             <li><a href="#/patient" accesskey="2" title="">Patients</a></li>
             <li><a href="#/infirmier" accesskey="3" title="">Infirmier</a></li>
             <li><a href="#/calendar" accesskey="4" title="">Calendrier</a></li>
-            <li><a href="#/search" accesskey="5" title="">Recherche</a></li>
-            <li ><a href="#/" class="logout" ng-click="logout()" ><i class="fa fa-sign-out fa-fw fa-x2"></i></a>                
 
-            </li>
+            <li><a href="#/search" accesskey="5" title="">Recherche</a></li>
+            <!--li ><a href="#/" class="logout" ng-click="logout()" ><i class="fa fa-sign-out fa-fw fa-x2"></i></a>                
+
+            </li-->
           </ul>
        </div>
 

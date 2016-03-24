@@ -1,53 +1,83 @@
 				<ul class="nav nav-tabs" style="margin-bottom:10px;">
 						 			 <li class="nav-item" style="width:70%; padding-top: 10px; color:#8dc63f; font-weight: 200; font-size:25px;">
-								    <span class="nav-link active"  >{{name}}&nbsp{{lastname}}</span>
+								    <span class="nav-link active"  >{{name | capitalize}}&nbsp{{lastname | capitalize}}</span>
 								  	</li>
 						  			<li class="nav-item">				   
 						 			</li>
 						</ul>	
 									
-					<table class="table table-striped" style="border-top:1px solid #fff;">
-						<tbody >							
+					<table class="table " style="border-top:1px solid #fff; color:#333300;">
+						<tbody >
+								<tr>
+								<td style="text-align:left;  color:#333300;">&nbsp N° Patient:</td>
+								<td style="text-align:left; color:#333300;"><b>001.25.41</b></td>
+							</tr>							
 							<tr>
-								<td style="text-align:right;  color:#23527c;"><i class="fa fa-home fa-fw fa-x2"></i>&nbsp Adresse:</td>
-								<td style="text-align:left; color:#23527c;"><b>{{adresse}}</b></td>
+								<td style="text-align:left;  color:#333300;"><i class="fa fa-home fa-fw fa-x2"></i>&nbsp Adresse:</td>
+								<td style="text-align:left; color:#333300;"><b>{{adresse}}</b></td>
 							</tr>
 							
 							<tr>
-								<td style="text-align:right;  color:#23527c;"><i class="fa fa-calendar fa-fw fa-x2"></i>&nbsp Date naiss. :</td>
-								<td style="text-align:left; color:#23527c;">{{birth_date}}</td>
+								<td style="text-align:left;  color:#333300;"><i class="fa fa-calendar fa-fw fa-x2"></i>&nbsp Date naiss. :</td>
+								<td style="text-align:left; color:#333300;">{{birth_date}}</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;  color:#23527c;"><i class="fa fa-female fa-fw fa-x2"></i><i class="fa fa-male fa-fw fa-x2"></i>&nbsp Sexe :</td>
-								<td style="text-align:left; color:#23527c;"></td>
+								<td style="text-align:left;  color:#333300;"><i class="fa fa-female fa-fw fa-x2"></i><i class="fa fa-male fa-fw fa-x2"></i>&nbsp Sexe :</td>
+								<td style="text-align:left; color:#333300;"></td>
 							</tr>
 							<tr>
-								<td style="text-align:right; width:200px; color:#23527c;">Numero SIS :</td>
-								<td style="text-align:left; color:#23527c;">{{SIS}}</td>
+								<td style="text-align:left; width:200px; color:#333300;">Numero SIS :</td>
+								<td style="text-align:left; color:#333300;">{{SIS}}</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;  color:#23527c;">Mutuelle :</td>
-								<td style="text-align:left; color:#23527c;">{{mutuelle}}</td>
+								<td style="text-align:left;  color:#333300;">Groupe sanguin :</td>
+								<td style="text-align:left; color:#333300;">O +</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;  color:#23527c;">Profession :</td>
-								<td style="text-align:left; color:#23527c;">{{profession}}</td>
+								<td style="text-align:left;  color:#333300;">Mutuelle :</td>
+								<td style="text-align:left; color:#333300;">{{mutuelle}}</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;  color:#23527c;">Status patient :</td>
-								<td style="text-align:left; color:#23527c;"><span style="padding:5px; background-color:#8dc63f; color:#fff; border-radius:10px  ">{{status}} </span></td>
+								<td style="text-align:left;  color:#333300;">Profession :</td>
+								<td style="text-align:left; color:#333300;">{{profession}}</td>
 							</tr>
 							<tr>
-							<td style="text-align:right;  color:#23527c;">Medecin traitant : </td> 
-							<td style="text-align:left; color:#23527c;">{{doctor}}</td> 
+								<td style="text-align:left;  color:#333300;">Status patient :</td>
+								<td style="text-align:left; color:#333300;"><span style="padding:5px; background-color:#8dc63f; color:#fff; border-radius:10px  ">{{status}} </span></td>
 							</tr>
 							<tr>
-							<td style="text-align:right;  color:#23527c;">
+							<td style="text-align:left;  color:#333300;">Medecin traitant : </td> 
+							<td style="text-align:left; color:#333300;">{{doctor}}</td> 
+							</tr>
+							<tr>
+							<td style="text-align:left;  color:#333300;">Personne à prevenir en cas de probleme: </td> 
+							<td style="text-align:left; color:#333300;">
+								<ul class="nav navbar-nav" >
+							      <li class="dropdown">
+							        <a href="" class="dropdown-toggle" style="color:#333300;" data-toggle="dropdown" ><i class="fa fa-user fa-fw fa-x2"></i>
+							        <span class="caret"></span></a>
+							        <ul class="dropdown-menu" style="width:200px;">
+							        	<li style="text-align:left;  background-color:#cccccc;"><b>Nom  /  tel</b></li>
+							          <li>Haris henri,  <b>0485254525</b></li>
+							          <li>Didier duamon, <b>0496254514 </b></li>
+							          <li>Eric renard, <b> 04758638255 </b> </li> 
+							        </ul>
+							      </li>
+							    </ul>	
+							</td> 
+							</tr>
+							<tr>
+							<td style="text-align:left;  color:#333300;">
 								<i class="fa fa-phone fa-fw fa-x2"></i>&nbsp Tél : </td> 
-							<td style="text-align:left; color:#23527c;">{{telephone}}</td> 
+							<td style="text-align:left; color:#333300;">{{telephone}}</td> 
 							</tr>
 							<tr>
-							<td style="text-align:right;">
+							<td style="text-align:left;  color:#333300;">
+								<i class="fa fa-phone fa-fw fa-x2"></i>&nbsp Gsm : </td> 
+							<td style="text-align:left; color:#333300;">{{telephone}}</td> 
+							</tr>
+							<tr>
+							<td style="text-align:left;">
 							<!--a href="#" class="delete" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
 								 Suprimer </a-->	
 							</td> 

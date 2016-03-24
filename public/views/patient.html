@@ -46,43 +46,91 @@
 					</table-->
 					
 						<div class="list-group">
-							  <span class="list-group-item active">
-							    <h4 class="list-group-item-heading"><i class="fa fa-user fa-fw fa-x2"></i>&nbsp{{patient.length}}&nbsp &nbsp liste patient &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</h4>
-							    
+							  <span class="list-group-item" style="background-color:#333300;color:#fff;">
+							    <h4 class="list-group-item-heading"><i class="fa fa-list fa-fw fa-x2"></i>&nbsp Patients 
+
+
+
+
+
+							     <a href="" ng-click="addpatient()" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-plus fa-fw fa-x2" style="float:right; color:#ff8533;"></i></a></h4>
+							   							    
 							  </span>
 							   <div ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)">
 							  <span class="list-group-item">
-							    <h4 class="list-group-item-heading">{{getpatient.name}} &nbsp {{getpatient.lastname}}</h4>
-							    <p class="list-group-item-text">
-							    	<i class="fa fa-home fa-fw fa-x2">&nbsp</i>{{getpatient.street}}&nbsp &nbsp
-							     <i class="fa fa-phone fa-fw fa-x2"></i>{{getpatient.telephone}}</p>
+							    <h4 class="list-group-item-heading" style="color:#4d2600;">{{getpatient.name | capitalize}} &nbsp {{getpatient.lastname }}</h4>
+							    <p class="list-group-item-text" style="color:#333300;">
+							    	<i class="fa fa-home fa-fw fa-x2">&nbsp</i>&nbsp &nbsp{{getpatient.street}}&nbsp  &nbsp
+							        <i class="fa fa-phone fa-fw fa-x2" style="color:#248f24;"></i>&nbsp &nbsp{{getpatient.telephone}}</p>
 							  </span>
 							</div>
-							</div>
-
-
+						</div>
 				</div>	
 			</div>
 			<div class="ebox2"> 
 				<!--span class="fa fa-anchor"></span-->
-				<div class="title ">
-						 <div ng-include="'views/fiche.html'" ></div>
+				<div class="title ">						
 					  <ul class="nav nav-tabs">
-						  <li><a data-toggle="tab" href="#/patient#fiche">Fiche</a></li>
-						  <li><a data-toggle="tab" href="#/patient#menu1">Historique</a></li>
-						  <li><a data-toggle="tab" href="#/patient#plus">Plus</a></li>
+						  <li><a data-toggle="tab" href="#/patient#fiche" style="color:#333300">Fiche</a></li>
+						  <li><a data-toggle="tab" href="#/patient#menu1" style="color:#333300">Historique</a></li>
+						  <li><a data-toggle="tab" href="#/patient#plus" style="color:#333300">Plus</a></li>
+						
 						</ul>
 
 						<div class="tab-content">
 						  <div id="fiche" class="tab-pane fade ">
-						    	sdfdfsdfsd
+						    	 <div ng-include="'views/fiche.html'" ></div>
 						  </div>
-						  <div id="menu1" class="tab-pane fade" style="width:80%;">	
-				            	xrnxfgnwfnwdgnwdfnwdfbwd fgbd bwfd wfd wdf
+						  <div id="menu1" class="tab-pane fade" style="width:auto;" >	
+					      <ul class="nav nav-tabs">
+						  <li class="nav-item" style="width:30%; padding-top: 10px; color:#333300; font-weight: 200; font-size:15px;">
+						    <span class="nav-link active">Publier la fiche</span>
+						  </li>
+						  <li class="nav-item" style="width:300px;">						   
+						    <div class="nav-link ui toggle checkbox" style="width:40%;"><span> <input type="checkbox" name="public" >
+					 		 <label>On </label></span></div>
+						  </li>
+						</ul>
 						  </div>
 						  <div id="plus" class="tab-pane fade">
-						    <h3>Menu 2</h3>
-						    <p>Some content in menu 2.</p>
+						    <span style="color:#cccccc; font-size:20px">Option</span>
+						    <ul class="list-group">
+							  <li class="list-group-item">
+							    <span class="badge" style="background-color:#DC143C;" > <i class="fa fa-del fa-fw fa-x2"></i>Suprimer</span>
+							    Supprimer le patient de votre base de donné
+							  </li>
+							  <li class="list-group-item">
+							    <span class="badge" style="background-color:#ff751a;" > Mofifier</span>
+							    Modifier les données du patient
+							  </li>
+							  <li class="list-group-item">
+							    <ul class="nav nav-tabs">
+								  <li class="nav-item" style="width:30%; padding-top: 10px; color:#333300; font-weight: 200; font-size:15px;">
+								    <span class="nav-link active">Donnée accès au donées du patient à tout vos collaborateur</span>
+								  </li>
+								  <li class="nav-item" style="width:300px;">						   
+								    <div class="nav-link ui toggle checkbox" style="width:40%;"><span> <input type="checkbox" name="public" >
+							 		 <label>On </label></span></div>
+								  </li>
+								</ul>
+							  </li>
+							    <li class="list-group-item">					    
+							     
+							     <ul class="ist-group-item" >
+
+							      <li class="dropdown">
+							        Donnée accès au donées du patient à certain collaborateur &nbsp<a href="" class="dropdown-toggle" style="color:#333300;" data-toggle="dropdown" ><i class="fa fa-user fa-fw fa-x2"></i>
+							        <span class="caret"></span></a>
+							        <ul class="dropdown-menu" style="width:200px;">
+							        	<li style="text-align:left;  background-color:#cccccc;"><b>Nom  /  tel</b></li>
+							          <li>Haris henri,  <b>0485254525</b></li>
+							          <li>Didier duamon, <b>0496254514 </b></li>
+							          <li>Eric renard, <b> 04758638255 </b> </li> 
+							        </ul>
+							      </li>
+							    </ul>		
+							  </li>
+							</ul>
 						  </div>
 						</div>
 				

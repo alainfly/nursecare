@@ -411,10 +411,10 @@ ul.contact li a.icon-rss:before
 	transition: opacity 0.25s ease-in-out;
 	text-decoration: none;	
 	color: #FFF;
-	padding: 1em;
+	padding: 0.1em;
 	border-radius: 0.25em;
 	border: 0px;
-	width: 120px;
+	width: 90px;
 	}
 
 

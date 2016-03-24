@@ -10,6 +10,17 @@ app.controller('PatientController', [ '$scope',
 
 										function($scope,$http, SessionHandling, api, auth, $rootScope){
 
+
+										$('#calendar').html('salut')				
+										
+/*
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+console.log('alain'.capitalize());
+*/
+
 										$scope.name="";										
 										$scope.lastname="";
 										$scope.SIS="";
