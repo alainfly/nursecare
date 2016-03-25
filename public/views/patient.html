@@ -24,7 +24,9 @@
 				    <input ng-keyup="findpatient()" type="text" ng-model="pat"  class="inputPatient"  placeholder="Recheche patient">
 				    <i class="fa fa-search fa-fw fa-x2"></i> 
 				 	</div>		
-				 	<br/>		
+				 	<br/>	
+				 	 	<br/>
+				 	 	 	
 					<!--table class="table table-striped">
 						
 						<thead style="background-color:#8dc63f; opacity: .5; ">							
@@ -48,12 +50,8 @@
 						<div class="list-group">
 							  <span class="list-group-item" style="background-color:#333300;color:#fff;">
 							    <h4 class="list-group-item-heading"><i class="fa fa-list fa-fw fa-x2"></i>&nbsp Patients 
-
-
-
-
-
-							     <a href="" ng-click="addpatient()" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-plus fa-fw fa-x2" style="float:right; color:#ff8533;"></i></a></h4>
+							     <a href=""  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+							     	<i class="fa fa-plus fa-fw fa-x2" style="float:right; color:#ff8533;"></i></a></h4>
 							   							    
 							  </span>
 							   <div ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)">
@@ -93,7 +91,8 @@
 						</ul>
 						  </div>
 						  <div id="plus" class="tab-pane fade">
-						    <span style="color:#cccccc; font-size:20px">Option</span>
+						    <span style="color:#cccccc; font-size:20px"> <br/>  Option</span>
+						    <br/>   <br/>  
 						    <ul class="list-group">
 							  <li class="list-group-item">
 							    <span class="badge" style="background-color:#DC143C;" > <i class="fa fa-del fa-fw fa-x2"></i>Suprimer</span>
@@ -133,15 +132,14 @@
 							</ul>
 						  </div>
 						</div>
-				
-
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-		<!-- Modal popup -->
 <div class="modal fade" id="exampleModal" tabindex="-1"    role="dialog" aria-labelledby="exampleModalLabel" >
+ <!-- Modal popup -->
+
   <div class="modal-dialog"  role="document" >
     <div class="modal-content">
       <div class="modal-header">
@@ -150,16 +148,14 @@
         <div style="color:#fff; text-align:center;" >
         <span  >Nouveau Patient</span>
         </div>
-      </div> 
-      <form  name="myForm" class="my-form">
+      </div> <br/>
+      <form  name="myForm" class="my-form" ng-submit="modaleaddpatient()">
       <div class="modal-body" > 
       	<div class="form-group">  
-	          <div class="radio">
-			      <label><input type="radio">M</label>
-			      <label><input type="radio">Mme</label>
-			      <label><input type="radio">Mlle</label>
-			      <label><input type="radio">Enf</label>
-		</div>
+	            <select  class="selectPatient" id="value_Id" >
+            	<option ><span style="color:#333300;">Mr</span></option>
+			    <option bn-log-dom-creation="with" ng-model="postalcode" value="{{code.code}}">Mme</option>			  
+			  </select>
 		 </div>     
           <div class="form-group">    
           <div>       
@@ -182,11 +178,12 @@
           <div class="form-group">  
           <div >        
             <select  class="selectPatient" id="value_Id" >
-            	<option >Code postale</option>
+            	<option ><span style="color:#333300;">Code postale</span></option>
 			    <option ng-repeat="code in codes track by $index" bn-log-dom-creation="with" ng-model="postalcode" value="{{code.code}}">{{code.code}} {{code.city}} </option>			  
 			  </select>
           </div>    
-            </div>     
+            </div>  
+             
 		  <div class="form-group">          
             <input type="text" ng-model="SIS"  class="inputPatient"  name="SIS" id="recipient-name" placeholder="Numero Carte SIS" required>
           </div>
@@ -203,9 +200,9 @@
             <input type="text" ng-model="telephone"  class="inputPatient"  id="recipient-name" placeholder="Télephone/Gsm" required>
           </div>          
             <div class="modal-footer" >
-
+            	<button  ng-submit="modaleaddpatient()" class="buttonvalid " >Valider</button>
               <button class="buttonclose"  data-dismiss="modal">Annuler</button>
-              <button  ng-click="addpatient()" class="button " >Valider</button>
+              
                </div>           
        
       </div> </form>
@@ -213,5 +210,4 @@
     </div>
   </div>
 </div>
-
   </div>

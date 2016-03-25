@@ -50,10 +50,10 @@ app.service('api',function($http,$q){
 					});
 					function postdata(obj,Url){
 						var request = $http({
-						url:"http://127.0.0.1:8888/api/api.php",			
+						url:URL,			
 						method: 'POST',
 						data:obj,
-						cache:false
+						cache:true
 						});
 						return request.then(function(res){
 							console.log(res);
@@ -67,7 +67,7 @@ app.service('api',function($http,$q){
 						url:URL,
 						method: 'GET',
 						params : codeObj,
-						cache : false
+						cache : true
 						});
 						return request.then(function(response) {
 							console.log(response.data);

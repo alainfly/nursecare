@@ -330,12 +330,12 @@ ul.contact li a.icon-rss:before
 	-ms-transition: opacity 0.25s ease-in-out;
 	transition: opacity 0.25s ease-in-out;
 	text-decoration: none;	
-	color: #2b2b2b;
+	color: #333300;
 	padding: 0.30em 0.30em;	
 	border: 0px;
 	border-bottom: 1px solid #ccc;
 	width: 25.2em;
-	font-size: 19px;
+	font-size: 17px;
 
 }
 .selectPatient{
@@ -347,12 +347,12 @@ ul.contact li a.icon-rss:before
 	-ms-transition: opacity 0.25s ease-in-out;
 	transition: opacity 0.25s ease-in-out;
 	text-decoration: none;	
-	color: #23527c;
+	color: #333300;
 	padding: 0.10em 0.10em;	
 	border: 0px;
 	border-bottom: 1px solid #ccc;
 	width: 25.2em;
-	font-size: 19px;
+	font-size: 17px;
 
 }
 
@@ -479,7 +479,7 @@ ul.contact li a.icon-rss:before
 {
 	display: inline-block;
 	padding: 1.3em 3em;	
-	background-color: #800000;
+	background-color: #333300;
 	-moz-transition: opacity 0.25s ease-in-out;
 	-webkit-transition: opacity 0.25s ease-in-out;
 	-o-transition: opacity 0.25s ease-in-out;
@@ -492,6 +492,22 @@ ul.contact li a.icon-rss:before
 	border: 0px;
 }
 
+.buttonvalid
+{
+	display: inline-block;
+	padding: 1.3em 3em;	
+	background-color: #8dc63f;
+	-moz-transition: opacity 0.25s ease-in-out;
+	-webkit-transition: opacity 0.25s ease-in-out;
+	-o-transition: opacity 0.25s ease-in-out;
+	-ms-transition: opacity 0.25s ease-in-out;
+	transition: opacity 0.25s ease-in-out;
+	letter-spacing: 0.20em;
+	text-decoration: none;
+	font-weight: 600;
+	color: #FFF;
+	border: 0px;
+}
 .button:hover
 {
 	background: #86bd3b;

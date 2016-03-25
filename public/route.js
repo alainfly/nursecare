@@ -61,6 +61,19 @@ router.get('/detailPatient', function(req, res){
 
   });
 
+router.get('/addPatient', function(req, res){
+      console.log(req.query); 
+   /* var queryS ='SELECT * FROM patient where patient.id = ?';   
+      connection.query(queryS,[req.query.id], function(err, rows, fields) {
+      if (err) throw err; 
+      //console.log(JSON.stringify(rows)); 
+      var sender= JSON.stringify(rows);
+        res.send(sender);  
+        //connection.end();
+    });*/
+
+  });
+
 // define the about route
 router.get('/log', function(req, res) {
   res.send('About birds');

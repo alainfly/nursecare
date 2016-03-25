@@ -83,33 +83,21 @@ console.log('alain'.capitalize());
 							$scope.findpatient= function(){
 								console.log($scope.pat);
 							}				
-				}]);
 
-/*
-
-app.controller('addpatientController', [ '$scope', 
-										 '$q',
-										 '$http',
-										 'crud_api',
-				function($scope,$q,$http,crud_api){
 				//get postalcode and city to charge into the select  from db
-				var objpostcode = {
-								idrequest :"1233-DR",
-								objpostcode : "true"
-								}
-				crud_api.finddata(objpostcode).then(function(result){
-				$scope.codes = result; 				
-				});
-				$scope.addpatient = function(){	
+			
+				$scope.modaleaddpatient = function(){	
 				var x = document.getElementById("value_Id").value;
-				console.log(x);
+				//console.log(x);
 				var codeObj = {
 							insetPatient:"insetPatient",
 							name: $scope.name,
+							pays : $scope.pays,
 							lastname: $scope.lastname,
 							housenumber : $scope.housenumber,
 							street : $scope.street,
 							city: $scope.city,
+							country: "Belgique",
 							postalcode: $scope.postalcode,
 							SIS :$scope.SIS,
 							telephone : $scope.telephone,
@@ -117,10 +105,16 @@ app.controller('addpatientController', [ '$scope',
 							birth_date:$scope.birthdate,
 							profession:$scope.profession,
 							mutuelle:$scope.mutuelle,
-							postalcode :"1030"
-				}
-				console.log($scope.postalcode);
-				crud_api.postdata(codeObj).then(function(res){console.log(res);} );		
-		}
-}]);*/
+							postalcode :$scope.postalcode,
+							genre : x 
 
+				}
+				//console.log(codeObj);
+				api.finddata(codeObj,'api/addPatient')
+				.then(
+					function(res){
+						console.log(res);
+					});		
+		}
+
+}]);
