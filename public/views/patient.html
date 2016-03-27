@@ -26,7 +26,7 @@
 				 	</div>		
 				 	<br/>	
 				 	 	<br/>
-				 	 	 	
+
 					<!--table class="table table-striped">
 						
 						<thead style="background-color:#8dc63f; opacity: .5; ">							
@@ -152,9 +152,12 @@
       <form  name="myForm" class="my-form" ng-submit="modaleaddpatient()">
       <div class="modal-body" > 
       	<div class="form-group">  
-	            <select  class="selectPatient" id="value_Id" >
-            	<option ><span style="color:#333300;">Mr</span></option>
-			    <option bn-log-dom-creation="with" ng-model="postalcode" value="{{code.code}}">Mme</option>			  
+	            <select  class="selectPatient" id="genreId" >
+            	<option ><span style="color:#333300;">Titre</span></option>
+			    <option bn-log-dom-creation="with" ng-model="genre" value="Mr">Mr</option>	
+			    <option bn-log-dom-creation="with" ng-model="genre" value="Mme">Mme</option>			
+			    <option bn-log-dom-creation="with" ng-model="genre" value="Mlle">Mlle</option>	
+			    <option bn-log-dom-creation="with" ng-model="genre" value="Enfant">Enfant</option>			  
 			  </select>
 		 </div>     
           <div class="form-group">    
@@ -166,7 +169,10 @@
             <input type="text" ng-model="lastname"  class="inputPatient"  id="recipient-name" placeholder="Prenom" required>
           </div>
           <div class="form-group">          
-            <input type="text" ng-model="birthdate"  class="inputPatient"  id="recipient-name" placeholder="date de naissance" required>
+            <input type="text" ng-model="birthdate"  class="inputPatient"  id='datetimepicker4' placeholder="date de naissance" required>
+
+           <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+
           </div>
 		  <div class="form-group">          
             <input type="text" ng-model="street"  class="inputPatient"   name="street" id="recipient-name" placeholder="Rue" required>
@@ -177,7 +183,7 @@
           </div>   
           <div class="form-group">  
           <div >        
-            <select  class="selectPatient" id="value_Id" >
+            <select  class="selectPatient" id="postcode" >
             	<option ><span style="color:#333300;">Code postale</span></option>
 			    <option ng-repeat="code in codes track by $index" bn-log-dom-creation="with" ng-model="postalcode" value="{{code.code}}">{{code.code}} {{code.city}} </option>			  
 			  </select>
@@ -188,8 +194,30 @@
             <input type="text" ng-model="SIS"  class="inputPatient"  name="SIS" id="recipient-name" placeholder="Numero Carte SIS" required>
           </div>
            <div class="form-group">          
-            <input type="text" ng-model="mutuelle"  class="inputPatient"  name="SIS" id="recipient-name" placeholder="Mutuelle" required>
+
+           	<select  class="selectPatient" id="mut">
+            	   <option ><span style="color:#333300;">Mutuelle</span></option>
+			       <option bn-log-dom-creation="with" ng-model="mutuelle" value="mutualités chrétiennes">mutualités chrétiennes</option>	
+			       <option bn-log-dom-creation="with" ng-model="mutuelle" value="mutualités neutres">mutualités neutres</option>
+			       <option bn-log-dom-creation="with" ng-model="mutuelle" value="mutualités socialistes">mutualités socialistes</option>
+			       <option bn-log-dom-creation="with" ng-model="mutuelle" value="mutualités libérales">mutualités libérales</option>
+			       <option bn-log-dom-creation="with" ng-model="mutuelle" value="mutualités libres">mutualités libres</option>
+			        <option bn-log-dom-creation="with" ng-model="mutuelle" value="Caisse auxiliaire d'assurance maladie-invalidité">Caisse auxiliaire d'assurance maladie-invalidité</option>
+			       <option bn-log-dom-creation="with" ng-model="mutuelle" value="Caisse des soins de santé de HR Rail">Caisse des soins de santé de HR Rail</option>
+			  </select>           
           </div>
+       <div class="form-group">  
+	            <select  class="selectPatient" id="groupS" >
+            	   <option ><span style="color:#333300;">Groupe sangiun</span></option>
+			       <option bn-log-dom-creation="with" ng-model="groupe" value="A">A</option>	
+			       <option bn-log-dom-creation="with" ng-model="groupe" value="A+">A+</option>
+			       <option bn-log-dom-creation="with" ng-model="groupe" value="B">B</option>
+			       <option bn-log-dom-creation="with" ng-model="groupe" value="B+">B+</option>
+			       <option bn-log-dom-creation="with" ng-model="groupe" value="B-">B-</option>
+			       <option bn-log-dom-creation="with" ng-model="groupe" value="O+">O+</option>			  
+
+			  </select>
+		 </div>  
             <div class="form-group">          
             <input type="text" ng-model="profession"  class="inputPatient"  name="profession" id="recipient-name" placeholder="profession" required>
           </div>
@@ -197,8 +225,11 @@
             <input type="text" ng-model="doctor"  class="inputPatient"  id="recipient-name" placeholder="medecin traitant" required>
           </div> 
           <div class="form-group">      
-            <input type="text" ng-model="telephone"  class="inputPatient"  id="recipient-name" placeholder="Télephone/Gsm" required>
-          </div>          
+            <input type="text" ng-model="telephone"  class="inputPatient"  id="recipient-name" placeholder="Télephone" required>
+          </div>  
+           <div class="form-group">      
+            <input type="text" ng-model="Gsm"  class="inputPatient"  id="recipient-name" placeholder="Gsm" required>
+          </div>         
             <div class="modal-footer" >
             	<button  ng-submit="modaleaddpatient()" class="buttonvalid " >Valider</button>
               <button class="buttonclose"  data-dismiss="modal">Annuler</button>

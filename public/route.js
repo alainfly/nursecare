@@ -4,14 +4,14 @@ var jwt = require('express-jwt');
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-
 		host :'localhost',
 		port:'8889',
 		user:'root',
 		password:'root',
-		database : 'nursecare',
+		database :'nursecare',
 		port:8889
 });
+
 //connection.connect();
  
 var jwtCheck = jwt({
@@ -61,17 +61,63 @@ router.get('/detailPatient', function(req, res){
 
   });
 
-router.get('/addPatient', function(req, res){
-      console.log(req.query); 
-   /* var queryS ='SELECT * FROM patient where patient.id = ?';   
-      connection.query(queryS,[req.query.id], function(err, rows, fields) {
+router.get('/postcode', function(req, res){
+    //var queryf = 'SELECT id FROM nurse WHERE nurse.email = ?';
+    //connection.query(queryf,[req.query.email], function(err, rows,fields) { 
+      //if (err) throw err;
+     // var getId= rows[0]['id'];
+      var postQ ='SELECT * FROM postalcode';   
+      connection.query(postQ,function(err, rows, fields) {
+         //console.log(rows); 
       if (err) throw err; 
       //console.log(JSON.stringify(rows)); 
       var sender= JSON.stringify(rows);
         res.send(sender);  
         //connection.end();
-    });*/
+    });
 
+  });
+router.get('/addPatient', function(req, res){
+      //console.log(req.query); 
+    var check_P ='SELECT * FROM Patient WHERE SIS = ? AND birth_date=?';   
+      connection.query(check_P,[req.query.SIS,req.query.birth_date], function(err, rows, fields) {
+      if (err) throw err; 
+      if (!rows.length) {
+        console.log('no find');
+                var save_adress = 'INSERT INTO Adresse SET ? ';
+                var adresse = { patient_sis:req.query.SIS, 
+                                street:req.query.street, 
+                                houseNum: req.query.housenumber,                                
+                                Postalcode:req.query.postalcode, 
+                                country:req.query.country
+                                };
+
+        connection.query(save_adress,adresse,function(err,rows,fields){
+         if(err) throw err;
+                var AddPatient='INSERT into patient SET ?';
+
+                var patientjSON = {
+                    SIS:req.query.SIS,
+                    birth_date:req.query.birth_date,
+                    Medecin:req.query.doctor,
+                    gender:req.query.genre,
+                    groupeSanguin:req.query.group,
+                    gsm:req.query.gsm,                              
+                    lastname:req.query.lastname,
+                    mutuelle:req.query.mutuelle,
+                    name:req.query.name,                    
+                    profession:req.query.profession,                    
+                    telephone:req.query.telephone 
+                  }
+                  console.log(req.query);
+        connection.query(AddPatient,patientjSON, function(err,rows,fields){
+          if (err) throw err;
+          res.send('data saved');
+          });          
+
+        });
+      };   
+    });
   });
 
 // define the about route

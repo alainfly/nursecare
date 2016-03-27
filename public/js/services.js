@@ -70,7 +70,7 @@ app.service('api',function($http,$q){
 						cache : true
 						});
 						return request.then(function(response) {
-							console.log(response.data);
+							//console.log(response.data);
 							return response.data;
 						} , errorCB);		
 					}

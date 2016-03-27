@@ -9,18 +9,7 @@ app.controller('PatientController', [ '$scope',
 										  '$rootScope',
 
 										function($scope,$http, SessionHandling, api, auth, $rootScope){
-
-
-										$('#calendar').html('salut')				
-										
 /*
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
-console.log('alain'.capitalize());
-*/
-
 										$scope.name="";										
 										$scope.lastname="";
 										$scope.SIS="";
@@ -31,7 +20,7 @@ console.log('alain'.capitalize());
 										$scope.profession = "";
 										$scope.mutuelle ="";
 										$scope.telephone="";
-
+*/
 
 		       				//list all Patient
 							angular.forEach(auth.profile, function(value,key) {       				
@@ -49,9 +38,8 @@ console.log('alain'.capitalize());
 								//window.location ="#/";
 							}
 							$scope.patient = resultData; 
-							console.log(resultData);
+							//console.log(resultData);
 							});
-
        																
 							$scope.patientfiche = function(idpatient){
 
@@ -85,10 +73,25 @@ console.log('alain'.capitalize());
 							}				
 
 				//get postalcode and city to charge into the select  from db
-			
-				$scope.modaleaddpatient = function(){	
-				var x = document.getElementById("value_Id").value;
-				//console.log(x);
+				var obj = {}
+				api.finddata(obj,'api/postcode')
+				.then(
+					function(res){
+						//console.log(res.data);
+						$scope.codes = res;
+					});
+				$scope.modaleaddpatient = function(){
+				  $scope.myDate = new Date();
+				var x = document.getElementById("genreId").value;
+				//console.log(x); 
+				var mut = document.getElementById("mut").value;
+				console.log(mut);
+
+				var g = document.getElementById("groupS").value;
+				//console.log(g);
+					var postcode = document.getElementById("postcode").value;
+				//console.log(postcode);
+
 				var codeObj = {
 							insetPatient:"insetPatient",
 							name: $scope.name,
@@ -98,15 +101,16 @@ console.log('alain'.capitalize());
 							street : $scope.street,
 							city: $scope.city,
 							country: "Belgique",
-							postalcode: $scope.postalcode,
+							postalcode: postcode,
 							SIS :$scope.SIS,
 							telephone : $scope.telephone,
 							doctor:$scope.doctor,
 							birth_date:$scope.birthdate,
 							profession:$scope.profession,
-							mutuelle:$scope.mutuelle,
-							postalcode :$scope.postalcode,
-							genre : x 
+							mutuelle:mut,							
+							genre : x,
+							group : g,  
+							gsm : $scope.Gsm
 
 				}
 				//console.log(codeObj);
