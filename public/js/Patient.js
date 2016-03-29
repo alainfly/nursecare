@@ -60,11 +60,17 @@ app.controller('PatientController', [ '$scope',
 										$scope.adresse=value.street;
 										$scope.birth_date=value.birth_date;
 										$scope.doctor = value.Medecin;
+										$scope.number = value.houseNum;
+										$scope.codepostal = value.Postalcode;
 										$scope.profession = value.profession;
 										$scope.mutuelle =value.Mutuelle;
-										$scope.telephone=value.telephone
+										$scope.telephone=value.telephone;
+										$scope.gsm=value.gsm;
+										$scope.groupeSanguin = value.groupeSanguin;
+										$scope.sexe=value.sexe
 										})
 								});
+							location.path ='/patient#fiche';
 							}	
 
 
@@ -81,18 +87,25 @@ app.controller('PatientController', [ '$scope',
 						$scope.codes = res;
 					});
 				$scope.modaleaddpatient = function(){
-				  $scope.myDate = new Date();
-				var x = document.getElementById("genreId").value;
-				//console.log(x); 
-				var mut = document.getElementById("mut").value;
-				console.log(mut);
+				  	$scope.myDate = new Date();
+					var x = document.getElementById("genreId").value;
+					//console.log(x); 
+					var mut = document.getElementById("mut").value;
+					console.log(mut);
 
-				var g = document.getElementById("groupS").value;
-				//console.log(g);
+					var g = document.getElementById("groupS").value;
+					//console.log(g);
 					var postcode = document.getElementById("postcode").value;
-				//console.log(postcode);
-
-				var codeObj = {
+					var sexe = document.getElementById("sexe").value;
+					var emailclient = {
+						email : $scope.email
+					}
+					//Retreive clientID from server
+					api.clientid(emailclient,'/inits/getid').then(
+					function(res){
+						console.log('*****'+res);
+					
+					var codeObj = {
 							insetPatient:"insetPatient",
 							name: $scope.name,
 							pays : $scope.pays,
@@ -110,15 +123,21 @@ app.controller('PatientController', [ '$scope',
 							mutuelle:mut,							
 							genre : x,
 							group : g,  
-							gsm : $scope.Gsm
+							gsm : $scope.Gsm,
+							idnurse: res,
+							sexe:sexe
+				}	
+				console.log(codeObj);	
 
-				}
-				//console.log(codeObj);
 				api.finddata(codeObj,'api/addPatient')
 				.then(
 					function(res){
 						console.log(res);
-					});		
+					});	
+				}, function(){
+					console.log('issue occures when tring ti retreive clientID ');
+				});	
+
 		}
 
 }]);

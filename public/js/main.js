@@ -15,7 +15,7 @@
 
 				//var session = localStorage.getItem("b_rtc");			   	
 				//localStorage.setItem('b_rtc','true');
-				// $scope.showMenuebared = $location.path() === '/';				
+				// $scope.showMenuebared = $location.path() === '/';			
 
 				var session = localStorage.getItem("b_rtc");
 				console.log(session);
@@ -49,7 +49,7 @@
 										email:$scope.email
 										}
 
-       				var request = $http({
+       			/*	var request = $http({
 						url:"/api/local",
 						method: 'GET',
 						params : getidpatient,
@@ -59,8 +59,8 @@
 							console.log(response.data);
 							return response.data;
 						} , function(err){
-							console.log(err);
-						});
+							console.log(err);*/
+						//});
 
 			     
 			    }	

@@ -25,13 +25,14 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 // search client id with client email, then get all client's patient 
+
 router.get('/patient', function(req, res){
     var queryf = 'SELECT id FROM nurse WHERE nurse.email = ?';
     connection.query(queryf,[req.query.email], function(err, rows,fields) { 
       if (err) throw err;
       var getId= rows[0]['id'];
-      console.log(rows[0]['id']); 
-      var queryString ='SELECT * FROM nurse n JOIN mypatient mp ON n.id=mp.id_nurse JOIN patient p ON p.id=mp.id_patient WHERE n.id = ?';   
+      //console.log(rows[0]['id']); 
+      var queryString ='SELECT * FROM nurse n JOIN mypatient mp ON n.id=mp.id_nurse JOIN patient p ON p.id=mp.id_patient JOIN Adresse adr ON p.AdressID=adr.id WHERE n.id = ?';   
       connection.query(queryString,[getId], function(err, rows, fields) {
       if (err) throw err; 
       //console.log(JSON.stringify(rows)); 
@@ -50,7 +51,7 @@ router.get('/detailPatient', function(req, res){
       //if (err) throw err;
      // var getId= rows[0]['id'];
       console.log(req.query.id); 
-      var queryS ='SELECT * FROM patient where patient.id = ?';   
+      var queryS ='SELECT * FROM patient p JOIN Adresse adr ON p.id = adr.id where p.id = ?';   
       connection.query(queryS,[req.query.id], function(err, rows, fields) {
       if (err) throw err; 
       //console.log(JSON.stringify(rows)); 
@@ -81,6 +82,7 @@ router.get('/addPatient', function(req, res){
       //console.log(req.query); 
     var check_P ='SELECT * FROM Patient WHERE SIS = ? AND birth_date=?';   
       connection.query(check_P,[req.query.SIS,req.query.birth_date], function(err, rows, fields) {
+
       if (err) throw err; 
       if (!rows.length) {
         console.log('no find');
@@ -93,6 +95,7 @@ router.get('/addPatient', function(req, res){
                                 };
 
         connection.query(save_adress,adresse,function(err,rows,fields){
+          var SaveId = rows.insertId; 
          if(err) throw err;
                 var AddPatient='INSERT into patient SET ?';
 
@@ -107,12 +110,31 @@ router.get('/addPatient', function(req, res){
                     mutuelle:req.query.mutuelle,
                     name:req.query.name,                    
                     profession:req.query.profession,                    
-                    telephone:req.query.telephone 
+                    telephone:req.query.telephone, 
+                    AdressID : SaveId,
+                    sexe : req.query.sexe
                   }
-                  console.log(req.query);
-        connection.query(AddPatient,patientjSON, function(err,rows,fields){
+                  
+                  //console.log(req.query);
+
+                 // todo getid  
+          connection.query(AddPatient,patientjSON, function(err,rows,fields){
+             var getId = rows.insertId;
           if (err) throw err;
           res.send('data saved');
+          
+          var queryz = "INSERT INTO mypatient SET ?";
+          var val = {
+                        id_patient : getId,
+                        id_nurse : req.query.idnurse
+          } 
+          console.log(val);
+          connection.query(queryz,val,function(err,rows,fields){
+            if (err) throw err;
+              console.log('patient assigned to nurse');
+          });
+
+
           });          
 
         });

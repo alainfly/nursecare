@@ -49,7 +49,16 @@ app = angular.module('config',['ngRoute','auth0', 'angular-storage', 'angular-jw
     app.run(function(auth) {
       // This hooks al auth events to check everything as soon as the app starts
       auth.hookEvents();
+              angular.forEach(auth.profile, function(value,key) {               
+              if(key=='email'){
+                $rootScope.email = value;
+                //$scope.hidemenu= false; 
+              }
+
+            }); 
     });
+
+
 /*
     app.run(function($rootScope, $templateCache) {
     $rootScope.$on('$routeChangeStart', function(event, next, current) {

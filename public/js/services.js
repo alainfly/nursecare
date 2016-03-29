@@ -43,10 +43,9 @@ app.filter('capitalize', function() {
 app.service('api',function($http,$q){		
 			
 			return ({
-			        postdata : postdata,
-			        deletedata : deletedata,
-			        updatedata : updatedata,
-			        finddata : finddata
+			        postdata : postdata,			      
+			        finddata : finddata,
+			        clientid : clientid
 					});
 					function postdata(obj,Url){
 						var request = $http({
@@ -74,12 +73,18 @@ app.service('api',function($http,$q){
 							return response.data;
 						} , errorCB);		
 					}
-					function deletedata(){						
+					function clientid(params,URL){
+					    var request = $http({
+						url:URL,
+						method: 'GET',
+						params : params,
+						cache : true
+						});
+						return request.then(function(res){
+							return res.data;
+						})			
 					}
 
-					function updatedata(){						
-					}
-					
 					function success(res){
 						return res.data;
 					}
