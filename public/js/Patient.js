@@ -9,18 +9,6 @@ app.controller('PatientController', [ '$scope',
 										  '$rootScope',
 
 										function($scope,$http, SessionHandling, api, auth, $rootScope){
-/*
-										$scope.name="";										
-										$scope.lastname="";
-										$scope.SIS="";
-										$scope.status="";
-										$scope.adresse="";
-										$scope.birth_date="";
-										$scope.doctor = "";
-										$scope.profession = "";
-										$scope.mutuelle ="";
-										$scope.telephone="";
-*/
 
 		       				//list all Patient
 							angular.forEach(auth.profile, function(value,key) {       				
@@ -31,14 +19,13 @@ app.controller('PatientController', [ '$scope',
 							var data = {
 										email: $scope.email,
 										listpatient:true
-
 										}
 							api.finddata(data,'api/patient').then(function(resultData){
 							if (!resultData){
 								//window.location ="#/";
 							}
 							$scope.patient = resultData; 
-							//console.log(resultData);
+							console.log(resultData);
 							});
        																
 							$scope.patientfiche = function(idpatient){
@@ -98,7 +85,19 @@ app.controller('PatientController', [ '$scope',
 							}
 
 							$scope.findpatient= function(){
+
+								var searchvalue= {
+									search : $scope.pat, 
+									email: $scope.email
+								}
 								console.log($scope.pat);
+								api.finddata(searchvalue,'patientTool/search').then(function(resultData){
+								if (!resultData){
+									//window.location ="#/";
+								}
+								$scope.patient = resultData; 
+								console.log(resultData);
+								});
 							}				
 
 				//get postalcode and city to charge into the select  from db

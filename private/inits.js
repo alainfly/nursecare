@@ -26,8 +26,7 @@ router.use(function timeLog(req, res, next) {
 });
 
 //return clientID to client  
-router.get('/getid',function(req,res){
-	
+router.get('/getid',function(req,res){	
 	var queryf = 'SELECT id FROM nurse WHERE nurse.email = ?';
     connection.query(queryf,[req.query.email], function(err, rows,fields) { 
       if (err) throw err;
