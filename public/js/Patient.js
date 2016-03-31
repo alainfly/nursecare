@@ -43,15 +43,17 @@ app.controller('PatientController', [ '$scope',
        																
 							$scope.patientfiche = function(idpatient){
 
-								console.log(idpatient);
+								//console.log(idpatient);
 								var getidpatient = {
 										//email: $scope.email,
 										id:idpatient,	
 										fichepatient:true
 										}
+								  $rootScope.idpatient = idpatient;
+										
 								//console.log(getidpatient);
 							api.finddata(getidpatient,'api/detailPatient').then(function(res){
-							console.log(res);								
+							//console.log(res);								
 										angular.forEach(res,function(value,key){										
 										$scope.name=value.name;										
 										$scope.lastname=value.lastname;
@@ -70,9 +72,30 @@ app.controller('PatientController', [ '$scope',
 										$scope.sexe=value.sexe
 										})
 								});
-							location.path ='/patient#fiche';
+
+								api.whocanAssess(getidpatient,'api/access').then(function(response){
+									$scope.whocanAcc = response;
+									console.log(response);
+								}, function(err){
+									console.log(err);
+								});
+
 							}	
 
+							$scope.addaccess = function(){
+								//var x = document.getElementById("nurseAcess").value;
+							var accessObj = {
+											idpatient : $scope.idpatient,
+											idnurse: document.getElementById("nurseAcess").value	
+							}
+
+							console.log(accessObj);	
+								
+							api.finddata(accessObj,'api/addaccess').then(function(res){
+								console.log(res);
+							});
+
+							}
 
 							$scope.findpatient= function(){
 								console.log($scope.pat);
@@ -86,12 +109,20 @@ app.controller('PatientController', [ '$scope',
 						//console.log(res.data);
 						$scope.codes = res;
 					});
+				//get nurse and charge data in selector
+				api.finddata(obj,'api/nurse')
+				.then(
+					function(res){						
+						$scope.nurse = res;
+					});
+
+
 				$scope.modaleaddpatient = function(){
 				  	$scope.myDate = new Date();
 					var x = document.getElementById("genreId").value;
 					//console.log(x); 
 					var mut = document.getElementById("mut").value;
-					console.log(mut);
+					//console.log(mut);
 
 					var g = document.getElementById("groupS").value;
 					//console.log(g);
@@ -103,7 +134,7 @@ app.controller('PatientController', [ '$scope',
 					//Retreive clientID from server
 					api.clientid(emailclient,'/inits/getid').then(
 					function(res){
-						console.log('*****'+res);
+					//	console.log('*****'+res);
 					
 					var codeObj = {
 							insetPatient:"insetPatient",
@@ -127,7 +158,7 @@ app.controller('PatientController', [ '$scope',
 							idnurse: res,
 							sexe:sexe
 				}	
-				console.log(codeObj);	
+				//console.log(codeObj);	
 
 				api.finddata(codeObj,'api/addPatient')
 				.then(

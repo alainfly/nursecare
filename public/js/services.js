@@ -45,7 +45,8 @@ app.service('api',function($http,$q){
 			return ({
 			        postdata : postdata,			      
 			        finddata : finddata,
-			        clientid : clientid
+			        clientid : clientid,
+			        whocanAssess : whocanAssess
 					});
 					function postdata(obj,Url){
 						var request = $http({
@@ -62,6 +63,18 @@ app.service('api',function($http,$q){
 						});
 					}					
 					function finddata(codeObj,URL){
+						var request = $http({
+						url:URL,
+						method: 'GET',
+						params : codeObj,
+						cache : true
+						});
+						return request.then(function(response) {
+							//console.log(response.data);
+							return response.data;
+						} , errorCB);		
+					}
+					function whocanAssess(codeObj,URL){
 						var request = $http({
 						url:URL,
 						method: 'GET',

@@ -17,15 +17,13 @@
 		<br/>
 			</div-->	
 			<div class="ebox1"> <!--span class="fa fa-pagelines"></span-->
-				
-				<div class="title"  style="height:500px; ">	
-					<div >
-									
+				<div >									
 				    <input ng-keyup="findpatient()" type="text" ng-model="pat"  class="inputPatient"  placeholder="Recheche patient">
 				    <i class="fa fa-search fa-fw fa-x2"></i> 
-				 	</div>		
-				 	<br/>	
-				 	 	<br/>
+				 	</div>	
+				 	
+				<div class="title"  style="height:600px; overflow: scroll;">	
+					
 
 					<!--table class="table table-striped">
 						
@@ -47,14 +45,14 @@
 						</tbody>
 					</table-->
 					
-						<div class="list-group">
+						<div class="list-group"  >
 							  <span class="list-group-item" style="background-color:#333300;color:#fff;">
 							    <h4 class="list-group-item-heading"><i class="fa fa-list fa-fw fa-x2"></i>&nbsp Patients 
 							     <a href=""  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
 							     	<i class="fa fa-plus fa-fw fa-x2" style="float:right; color:#ff8533;"></i></a></h4>
 							   							    
 							  </span>
-							   <div ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)">
+							   <div ng-repeat="getpatient in patient track by $index" ng-click="patientfiche(getpatient.id)" style="cursor:pointer">
 							  <span class="list-group-item">
 							    <h4 class="list-group-item-heading" style="color:#4d2600;">{{getpatient.name | capitalize}} &nbsp {{getpatient.lastname }}</h4>
 							    <p class="list-group-item-text" style="color:#333300;">
@@ -103,26 +101,44 @@
 							    <span class="badge" style="background-color:#ff751a;" > Mofifier</span>
 							    Modifier les données du patient
 							  </li>
+							  
 							  <li class="list-group-item">
 							    <ul class="nav nav-tabs">
-								  <li class="nav-item" style="width:30%; padding-top: 10px; color:#333300; font-weight: 200; font-size:15px;">
-								    <span class="nav-link active">Donnée accès au donées du patient à tout vos collaborateur</span>
+								  <li class="nav-item" style="width:auto; padding-top: 5px; color:#333300; font-weight: 200; font-size:15px;">
+								    <span class="nav-link active">Accés au Patient </span>
 								  </li>
-								  <li class="nav-item" style="width:300px;">						   
+								   <li class="nav-item" style="width:auto; padding-left: 10px; padding-top: 5px;">						   
+								  	<div >        
+							            <select   id="nurseAcess" style="width:auto;">
+							            	<option >Personnel medical</option>
+										    <option ng-repeat="nurse in nurse track by $index" bn-log-dom-creation="with" ng-model="postalcode" value="{{nurse.id}}">{{nurse.name | capitalize}} {{nurse.lastname | capitalize}} </option>			  
+										  </select>
+							          </div> 
+								  </li>
+								   <li class="nav-item" ng-click="addaccess()" style="width:auto; padding-top: 5px; color:#333300; font-weight: 200; font-size:15px;">
+								    &nbsp <span class="badge" style="background-color:#248f24; cursor:pointer" ><i class="fa fa-del fa-fw fa-x2"></i>ok</span>
+								  </li>
+
+								  <!--li class="nav-item" style="width:auto; padding-left: 10px;">						   
 								    <div class="nav-link ui toggle checkbox" style="width:40%;"><span> <input type="checkbox" name="public" >
 							 		 <label>On </label></span></div>
-								  </li>
+								  </li-->
 								</ul>
-							  </li>
-							    <li class="list-group-item">					    
-							     
-							     <ul class="ist-group-item" >
 
+								<ul class="list">
+								  <li class="list" ng-repeat="access in whocanAcc track by $index "style="width:auto; padding-top: 5px; font-weight:500; color:#248f24; font-size:13px;">
+								    <span >{{access.name | capitalize }}&nbsp {{access.lastname | capitalize}} </span>
+								  </li>						  
+								</ul>
+
+							  </li>
+							    <li class="list-group-item">
+							     <ul class="ist-group-item" >
 							      <li class="dropdown">
 							        Donnée accès au donées du patient à certain collaborateur &nbsp<a href="" class="dropdown-toggle" style="color:#333300;" data-toggle="dropdown" ><i class="fa fa-user fa-fw fa-x2"></i>
 							        <span class="caret"></span></a>
 							        <ul class="dropdown-menu" style="width:200px;">
-							        	<li style="text-align:left;  background-color:#cccccc;"><b>Nom  /  tel</b></li>
+							          <li style="text-align:left;  background-color:#cccccc;"><b>Nom  /  tel</b></li>
 							          <li>Haris henri,  <b>0485254525</b></li>
 							          <li>Didier duamon, <b>0496254514 </b></li>
 							          <li>Eric renard, <b> 04758638255 </b> </li> 

@@ -39,12 +39,48 @@ router.get('/patient', function(req, res){
       var sender= JSON.stringify(rows)
         res.send(sender);  
         //connection.end();
-    });
+      });
 
     });
 
 });
 
+//Permission on patient file 
+router.get('/access', function(req, res){
+  console.log(req.query.id);
+var queryaccess ='SELECT name, lastname FROM nurse n JOIN Access a ON n.id=a.id_nurse WHERE a.id_patient = ? ';   
+      connection.query(queryaccess,[req.query.id], function(err, rows, fields) {        
+      if (err) throw err; 
+      var accesCB= JSON.stringify(rows);
+      console.log(accesCB);
+        res.send(rows); 
+      });
+});
+
+//return list of nurse
+router.get('/nurse',function(req,res){
+  var querynurse = 'SELECT name, lastname, id FROM nurse';
+  connection.query(querynurse, function(err,rows,fields){
+    res.send(JSON.stringify(rows));
+  });
+});
+
+//Adding permition and access to table Access (access on patient record)
+
+router.get('/addaccess', function (req,res){
+    var queryAddaccess= 'INSERT INTO Access SET ?';
+    var varAccess = {
+                    id_patient : req.query.idpatient,
+                    id_nurse : req.query.idnurse
+                }
+    connection.query(queryAddaccess,varAccess, function(err, rows,fields){
+      res.send('permission created');
+    }); 
+
+});
+
+
+//return Patient with adresse
 router.get('/detailPatient', function(req, res){
     //var queryf = 'SELECT id FROM nurse WHERE nurse.email = ?';
     //connection.query(queryf,[req.query.email], function(err, rows,fields) { 
@@ -82,7 +118,6 @@ router.get('/addPatient', function(req, res){
       //console.log(req.query); 
     var check_P ='SELECT * FROM Patient WHERE SIS = ? AND birth_date=?';   
       connection.query(check_P,[req.query.SIS,req.query.birth_date], function(err, rows, fields) {
-
       if (err) throw err; 
       if (!rows.length) {
         console.log('no find');
@@ -99,6 +134,13 @@ router.get('/addPatient', function(req, res){
          if(err) throw err;
                 var AddPatient='INSERT into patient SET ?';
 
+                var Access='INSERT into Access SET ?';
+
+                var AccessObj= {
+                              id_patient: SaveId,
+                                id_nurse : req.query.idnurse
+                                } 
+                    
                 var patientjSON = {
                     SIS:req.query.SIS,
                     birth_date:req.query.birth_date,
@@ -118,21 +160,30 @@ router.get('/addPatient', function(req, res){
                   //console.log(req.query);
 
                  // todo getid  
+
+
+                 connection.query(Access,AccessObj, function(err,rows,fields){
+                 //var getId = rows.insertId;
+                 if (err) throw err;
+                  //res.send("done");
+                  });
+
+
           connection.query(AddPatient,patientjSON, function(err,rows,fields){
              var getId = rows.insertId;
-          if (err) throw err;
-          res.send('data saved');
-          
-          var queryz = "INSERT INTO mypatient SET ?";
-          var val = {
-                        id_patient : getId,
-                        id_nurse : req.query.idnurse
-          } 
-          console.log(val);
-          connection.query(queryz,val,function(err,rows,fields){
-            if (err) throw err;
-              console.log('patient assigned to nurse');
-          });
+              if (err) throw err;
+              res.send('data saved');
+              
+              var queryz = "INSERT INTO mypatient SET ?";
+              var val = {
+                            id_patient : getId,
+                            id_nurse : req.query.idnurse
+              } 
+              console.log(val);
+              connection.query(queryz,val,function(err,rows,fields){
+                if (err) throw err;
+                  console.log('patient assigned to nurse');
+              });
 
 
           });          
