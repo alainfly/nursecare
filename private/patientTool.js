@@ -9,7 +9,8 @@ var connection = mysql.createConnection({
 		user:'root',
 		password:'root',
 		database :'nursecare',
-		port:8889
+		port:8889,
+    multipleStatements: true
 });
 
 //connection.connect();
@@ -61,5 +62,26 @@ router.get('/search', function(req, res){
     });
 
  });
+router.get('/delete', function (req,res){
+    // var todelete = req.query.id;  
+    console.log(req.query.id);
+     var delquery1 ="DELETE FROM patient WHERE id ="+req.query.id;
+      var delquery2 ="DELETE FROM mypatient WHERE id_patient ="+req.query.id;;
+       var delquery3 ="DELETE FROM Access WHERE id_patient= "+req.query.id;;
+          console.log(delquery1);
+     connection.query(delquery1,delquery2,function(err,rows,fields) {
+          if (err) throw err;
+            connection.query(delquery3,function(err,rows,fields) {
+                  if (err) throw err;
+                  res.send('patient deleted');
+            })
+     });   
+
+
+
+
+});
+
+
 
 module.exports = router;

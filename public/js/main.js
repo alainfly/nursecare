@@ -1,4 +1,4 @@
-   app = angular.module("mainApp",['ngCookies','config','patientModule','loginModule','logout','calendarModule']);  
+   app = angular.module("mainApp",['ngCookies','config','calendarModule','patientModule','loginModule','logout']);  
 
 
     // create the controller and inject Angular's $scope

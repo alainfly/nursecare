@@ -338,6 +338,23 @@ ul.contact li a.icon-rss:before
 	font-size: 17px;
 
 }
+.searchPatient{
+	background: #fff;
+	display: inline-block;
+	-moz-transition: opacity 0.25s ease-in-out;
+	-webkit-transition: opacity 0.25s ease-in-out;
+	-o-transition: opacity 0.25s ease-in-out;
+	-ms-transition: opacity 0.25s ease-in-out;
+	transition: opacity 0.25s ease-in-out;
+	text-decoration: none;	
+	color: #86bd3b;
+	padding: 0.30em 0.30em;	
+	border: 0px;
+	border-bottom: 1px solid #ccc;
+	width: 96%;
+	font-size: 17px;
+
+}
 .selectPatient{
 	background: #fff;
 	display: inline-block;
@@ -1187,3 +1204,16 @@ ul.contact li a.icon-rss:before
     .search-query:focus{
         width: 260px;
     }   
+.scrollbarp
+{
+   height: 400px;
+   overflow-y: scroll;
+
+	
+}
+
+#calendar {
+		max-width: 500px;
+		margin: 0 auto;
+	}
+

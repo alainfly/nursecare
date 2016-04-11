@@ -6,13 +6,17 @@
 			</div>	
 			<div class="ebox1"> 
 				<div class="title">	
-				
+				 <div id="index" ng-controller="calendarController" >
+				        <div >       
+				            <div id="calendar" style="width:auto; height:auto;"></div>
+				        </div>    
+				</div>
 			</div>
 			<div class="ebox2"> 
 				<!--span class="fa fa-anchor"></span-->
 				<div class="title">						
 					
-					<form>
+					<!--form>
 					      <input type="text" ng-model="formData.desc" placeholder="Enter desc" />
 					      <input type="text" ng-model="formData.title" placeholder="Enter title" />
 					      <button type="submit" class="btn btn-primary" ng-click="sub()">Submit</button>

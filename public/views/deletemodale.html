@@ -1,0 +1,30 @@
+<div class="modal fade"  id="deletemodale"  tabindex="-1"  ng-controller="PatientController"  role="dialog" aria-labelledby="exampleModalLabel" >
+ <!-- Modal popup -->
+
+  <div class="modal-dialog"  role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"  style="color:#fff;">&times;</span></button>
+        <div style="color:#fff; text-align:center;" >
+        <span  >Nouveau Patient</span>
+        </div>
+      </div> <br/>
+      <form  name="myForm" class="my-form" ng-submit="deletepatient()">
+      <div class="modal-body" > 
+     
+          <div class="form-group">          
+          <span style="color:#333300;" > Suprimer le patient de vos donnée ?</span>
+          </div>
+                 
+            <div class="modal-footer" >
+              <button  ng-submit="deletepatient()" class="buttonvalid " >Suprimer</button>
+              <button class="buttonclose"  data-dismiss="modal">Annuler</button>
+              
+               </div>           
+       
+      </div> </form>
+       
+    </div>
+  </div>
+</div>
